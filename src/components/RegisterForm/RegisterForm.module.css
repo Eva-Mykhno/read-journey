@@ -1,0 +1,87 @@
+.wrapRegister {
+  padding: 20px;
+  background-color: var(--dark-gray);
+  border-radius: 30px;
+}
+
+.logo {
+  margin-bottom: 40px;
+  fill: var(--main);
+  stroke: var(--main);
+  width: 42px;
+  height: 17px;
+}
+
+.title {
+  margin-bottom: 20px;
+  color: var(--main);
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.02em;
+}
+
+.span {
+  color: var(--gray-medium);
+  opacity: 0.5;
+}
+
+.wrapForm {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.wrap {
+  position: relative;
+}
+
+.input {
+  width: 100%;
+  padding: 14px 14px 14px 60px;
+  border-radius: 12px;
+  color: var(--main);
+  background-color: var(--gray);
+  outline: none;
+  border: none;
+  text-indent: 10px;
+  transition: all 0.3s ease;
+}
+
+.inlineLabel {
+  position: absolute;
+  left: 14px; /* Расположение внутри input */
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--light-gray);
+  font-size: 14px;
+  pointer-events: none; /* Чтобы label не мешал вводу текста */
+}
+
+.input::placeholder {
+  color: var(--light-gray);
+}
+
+.iconBtn {
+  width: 16px;
+  height: 16px;
+  position: absolute;
+  top: 50%;
+  right: 16px;
+  transform: translateY(-50%);
+  background: transparent;
+  outline: none;
+  border: none;
+  background-color: transparent;
+}
+
+.icon {
+  fill: transparent;
+  stroke: var(--main);
+  width: 18px;
+  height: 18px;
+}
+
+.error {
+  color: var(--red);
+}
