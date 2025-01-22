@@ -6,23 +6,23 @@ import { register } from "../../redux/auth/operations";
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
 
-const sprite = "../../../public/sprite.svg";
+const sprite = "/sprite.svg";
 
 const registerSchema = Yup.object().shape({
   name: Yup.string()
     .min(3, "Too short name")
     .max(30, "Too long name")
-    .required(),
+    .required("Name is a required field"),
   email: Yup.string()
     .matches(
       /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/,
       'Email must have a one "@" and a "."'
     )
-    .required(),
+    .required("Mail is a required field"),
   password: Yup.string()
     .min(7, "Too short password")
     .max(20, "Too long password")
-    .required(),
+    .required("Enter a valid Password*"),
 });
 
 const RegisterForm = () => {
@@ -30,9 +30,9 @@ const RegisterForm = () => {
   const [showPassword, setShowPassword] = useState(false);
 
   const initialRegisterValues = {
-    name: "Ilona Ratushniak",
-    email: "Your@email.com",
-    password: "Yourpasswordhere",
+    name: "",
+    email: "",
+    password: "",
   };
 
   const handleSubmit = (values, actions) => {
@@ -46,9 +46,13 @@ const RegisterForm = () => {
 
   return (
     <section className={s.wrapRegister}>
-      <svg className={s.logo}>
-        <use href={`${sprite}#icon-logo`} />
-      </svg>
+      <div className={s.wrapLogo}>
+        <svg className={s.logo}>
+          <use href={`${sprite}#icon-logo`} />
+        </svg>
+        <p className={s.text}>read journey</p>
+      </div>
+
       <h2 className={s.title}>
         Expand your mind, reading <span className={s.span}>a book</span>{" "}
       </h2>
@@ -59,19 +63,34 @@ const RegisterForm = () => {
         <Form className={s.wrapForm}>
           <div className={s.wrap}>
             <label className={s.inlineLabel}>Name</label>
-            <Field type="text" name="name" className={s.input} />
+            <Field
+              type="text"
+              name="name"
+              placeholder="Ilona Ratushniak"
+              className={s.inputName}
+            />
             <ErrorMessage name="name" component="span" className={s.error} />
           </div>
 
           <div className={s.wrap}>
             <label className={s.inlineLabel}>Mail</label>
-            <Field type="email" name="email" className={s.input} />
+            <Field
+              type="email"
+              name="email"
+              placeholder="Your@email.com"
+              className={s.inputEmail}
+            />
             <ErrorMessage name="email" component="span" className={s.error} />
           </div>
 
           <div className={s.wrap}>
             <label className={s.inlineLabel}>Password</label>
-            <Field type="password" name="password" className={s.input} />
+            <Field
+              type={showPassword ? "text" : "password"}
+              name="password"
+              placeholder="Yourpasswordhere"
+              className={s.inputPassword}
+            />
             <ErrorMessage
               name="password"
               component="span"
@@ -82,7 +101,11 @@ const RegisterForm = () => {
               onClick={togglePasswordVisibility}
               className={s.iconBtn}>
               <svg className={s.icon}>
-                <use href={`${sprite}#icon-eye`} />
+                <use
+                  href={`${sprite}#${
+                    showPassword ? "icon-eye" : "icon-eye-off"
+                  }`}
+                />
               </svg>
             </button>
           </div>
