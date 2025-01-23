@@ -1,0 +1,285 @@
+.wrapLogin {
+  max-width: 335px;
+  padding: 20px;
+  background-color: var(--dark-gray);
+  border-radius: 30px;
+}
+
+.logo {
+  margin-bottom: 40px;
+  fill: var(--main);
+  stroke: var(--main);
+  width: 42px;
+  height: 17px;
+}
+
+.text {
+  display: none;
+}
+
+.title {
+  margin-bottom: 20px;
+  color: var(--main);
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.02em;
+}
+
+.span {
+  color: var(--gray-medium);
+  opacity: 0.5;
+}
+
+.wrapForm {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.wrap {
+  position: relative;
+}
+
+.inputEmail {
+  width: 100%;
+  padding: 14px 14px 14px 40px;
+  border-radius: 12px;
+  color: var(--main);
+  background-color: var(--gray);
+  outline: none;
+  border: 1px solid transparent;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  transition: all 0.3s ease;
+}
+
+.inputPassword {
+  width: 100%;
+  padding: 14px 14px 14px 70px;
+  border-radius: 12px;
+  color: var(--main);
+  background-color: var(--gray);
+  outline: none;
+  border: 1px solid transparent;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  transition: all 0.3s ease;
+}
+
+.inlineLabel {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--light-gray);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.inputEmail::placeholder,
+.inputPassword::placeholder {
+  color: var(--main);
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.inputEmail:focus,
+.inputEmail:hover,
+.inputEmail:active,
+.inputPassword:focus,
+.inputPassword:hover,
+.inputPassword:active {
+  border: 1px solid var(--border-input);
+}
+
+.iconBtn {
+  width: 16px;
+  height: 16px;
+  position: absolute;
+  top: 50%;
+  right: 16px;
+  transform: translateY(-50%);
+  background: transparent;
+  outline: none;
+  border: none;
+  background-color: transparent;
+}
+
+.icon {
+  fill: transparent;
+  stroke: var(--main);
+  width: 18px;
+  height: 18px;
+  transition: all 0.3s ease;
+}
+
+.error {
+  color: var(--red);
+  font-size: 10px;
+  font-weight: 500;
+  position: absolute;
+  top: 98%;
+  left: 10%;
+  transform: translateX(-10%);
+  z-index: 2;
+}
+
+.success {
+  color: var(--green);
+  font-size: 10px;
+  font-weight: 500;
+  position: absolute;
+  top: 98%;
+  left: 10%;
+  transform: translateX(-10%);
+  z-index: 2;
+}
+
+.links {
+  margin-top: 64px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.button {
+  width: 140px;
+  padding: 12px 29px;
+  background-color: var(--main);
+  outline: none;
+  border: 1px solid transparent;
+  border-radius: 30px;
+  color: var(--dark-gray);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  transition: all 0.3s ease;
+}
+
+.button:hover,
+.button:focus {
+  border: 1px solid var(--border-input);
+  background-color: transparent;
+  color: var(--main);
+}
+
+.link {
+  color: var(--light-gray);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.16;
+  letter-spacing: -0.02em;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: all 0.3s ease;
+}
+
+.link:hover,
+.link:focus {
+  color: var(--main);
+}
+
+@media screen and (min-width: 768px) {
+  .wrapLogin {
+    max-width: 704px;
+    width: 704px;
+    padding: 40px 64px;
+  }
+
+  .wrapLogo {
+    display: flex;
+    gap: 4px;
+  }
+
+  .logo {
+    margin-bottom: 157px;
+  }
+
+  .text {
+    display: block;
+    color: var(--main);
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    transform: translateY(-1px);
+    text-transform: uppercase;
+  }
+
+  .title {
+    margin-bottom: 40px;
+    width: 444px;
+    font-size: 64px;
+    line-height: 0.93;
+  }
+
+  .wrapForm {
+    gap: 14px;
+  }
+
+  .inlineLabel {
+    font-size: 14px;
+  }
+
+  .inputEmail {
+    width: 472px;
+    font-size: 14px;
+    padding: 16px 14px 16px 48px;
+  }
+
+  .inputPassword {
+    width: 472px;
+    font-size: 14px;
+    padding: 16px 14px 16px 80px;
+  }
+
+  .inputEmail::placeholder,
+  .inputPassword::placeholder {
+    font-size: 14px;
+  }
+
+  .iconBtn {
+    right: 122px;
+  }
+
+  .icon {
+    width: 20px;
+    height: 20px;
+  }
+
+  .links {
+    margin-top: 132px;
+    gap: 20px;
+  }
+
+  .button {
+    width: 225px;
+    padding: 16px 54px;
+    font-size: 20px;
+  }
+
+  .link {
+    font-size: 14px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .wrapLogin {
+    width: 600px;
+    max-width: 600px;
+    height: 736px;
+  }
+
+  .logo {
+    margin-bottom: 107px;
+  }
+
+  .iconBtn {
+    right: 30px;
+  }
+}

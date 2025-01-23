@@ -26,7 +26,7 @@
 }
 
 @media screen and (min-width: 1280px) {
-  .register {
+  .login {
     flex-direction: row;
     gap: 16px;
   }

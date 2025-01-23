@@ -6,6 +6,9 @@ const RegisterPage = lazy(() =>
   import("../../pages/RegisterPage/RegisterPage")
 );
 const LoginPage = lazy(() => import("../../pages/LoginPage/LoginPage"));
+const RecommendedPage = lazy(() =>
+  import("../../pages/RecommendedPage/RecommendedPage")
+);
 
 const App = () => {
   return (
@@ -13,6 +16,7 @@ const App = () => {
       <Routes>
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/login" element={<LoginPage />} />
+        <Route path="/recommended" element={<RecommendedPage />} />
       </Routes>
     </Suspense>
   );

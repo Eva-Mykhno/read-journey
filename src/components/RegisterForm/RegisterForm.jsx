@@ -1,10 +1,13 @@
 import * as Yup from "yup";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import s from "./RegisterForm.module.css";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { register } from "../../redux/auth/operations";
-import { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { NavLink, useNavigate } from "react-router-dom";
+import { selectIsLoggedIn } from "../../redux/auth/selectors";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const sprite = "/sprite.svg";
 
@@ -27,7 +30,15 @@ const registerSchema = Yup.object().shape({
 
 const RegisterForm = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const isLoggedIn = useSelector(selectIsLoggedIn);
   const [showPassword, setShowPassword] = useState(false);
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      navigate("/recommended");
+    }
+  }, [isLoggedIn, navigate]);
 
   const initialRegisterValues = {
     name: "",
@@ -35,9 +46,43 @@ const RegisterForm = () => {
     password: "",
   };
 
-  const handleSubmit = (values, actions) => {
-    dispatch(register(values));
-    actions.resetForm();
+  const handleSubmit = async (values, actions) => {
+    try {
+      const result = await dispatch(register(values));
+
+      if (register.rejected.match(result)) {
+        const isConflictError = result.payload?.message
+          ?.toLowerCase()
+          .includes("such email already exists");
+
+        const errorMessage = isConflictError
+          ? "A user with such email already registered."
+          : "Something went wrong. Please try again.";
+
+        toast.error(errorMessage, {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          theme: "dark",
+        });
+      } else {
+        actions.resetForm();
+        toast.success("Registration successful!", {
+          position: "top-center",
+          autoClose: 2000,
+          theme: "dark",
+        });
+      }
+    } catch {
+      toast.error("Something went wrong. Please try again.", {
+        position: "top-center",
+        autoClose: 3000,
+        theme: "dark",
+      });
+    }
   };
 
   const togglePasswordVisibility = () => {
@@ -109,6 +154,7 @@ const RegisterForm = () => {
               </svg>
             </button>
           </div>
+
           <div className={s.links}>
             <button type="submit" className={s.button}>
               Registration
