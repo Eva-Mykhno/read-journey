@@ -19,7 +19,7 @@ const registerSchema = Yup.object().shape({
   password: Yup.string()
     .min(7, "Too short password")
     .max(20, "Too long password")
-    .required("Enter a valid Password*"),
+    .required("Password is a required field"),
 });
 
 const LoginForm = () => {
@@ -82,27 +82,43 @@ const LoginForm = () => {
               placeholder="Your@email.com"
               className={s.inputEmail}
             />
-            <ErrorMessage name="email" component="span" className={s.error} />
+            <ErrorMessage
+              name="email"
+              component="span"
+              className={s.errorMessage}
+            />
           </div>
-
           <div className={s.wrap}>
             <label className={s.inlineLabel}>Password</label>
             <Field
               type={showPassword ? "text" : "password"}
               name="password"
               placeholder="Yourpasswordhere"
-              className={s.inputPassword}
+              className={`${s.inputPassword} ${
+                isPasswordValid === false
+                  ? s.error
+                  : isPasswordValid === true
+                  ? s.success
+                  : ""
+              }`}
             />
             <ErrorMessage
               name="password"
               component="span"
-              className={s.error}
+              className={s.errorMessage}
             />
             <button
               type="button"
               onClick={togglePasswordVisibility}
               className={s.iconBtn}>
-              <svg className={s.icon}>
+              <svg
+                className={`${s.icon} ${
+                  isPasswordValid === false
+                    ? s.error
+                    : isPasswordValid === true
+                    ? s.success
+                    : ""
+                }`}>
                 <use
                   href={`${sprite}#${
                     isPasswordValid === null
@@ -116,6 +132,7 @@ const LoginForm = () => {
                 />
               </svg>
             </button>
+
             {isPasswordValid === false && (
               <span className={s.error}>Enter a valid Password</span>
             )}

@@ -69,6 +69,14 @@
   transition: all 0.3s ease;
 }
 
+.inputPassword.error {
+  border: 1px solid var(--red);
+}
+
+.inputPassword.success {
+  border: 1px solid var(--green);
+}
+
 .inlineLabel {
   position: absolute;
   left: 14px;
@@ -105,7 +113,6 @@
   top: 50%;
   right: 16px;
   transform: translateY(-50%);
-  background: transparent;
   outline: none;
   border: none;
   background-color: transparent;
@@ -119,18 +126,36 @@
   transition: all 0.3s ease;
 }
 
-.error {
+.icon.error {
+  stroke: var(--red);
+  fill: var(--red);
+  width: 18px;
+  height: 18px;
+  position: absolute;
+  top: 50%;
+  right: 16px;
+  transform: translateY(-50%);
+}
+
+.icon.success {
+  stroke: var(--green);
+}
+
+.errorMessage {
+  display: block;
   color: var(--red);
   font-size: 10px;
   font-weight: 500;
   position: absolute;
-  top: 98%;
-  left: 10%;
-  transform: translateX(-10%);
-  z-index: 2;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  text-align: left;
+  z-index: 3;
+  padding-top: 2px;
 }
 
-.success {
+.successMessage {
   color: var(--green);
   font-size: 10px;
   font-weight: 500;
@@ -138,7 +163,7 @@
   top: 98%;
   left: 10%;
   transform: translateX(-10%);
-  z-index: 2;
+  z-index: 3;
 }
 
 .links {
