@@ -129,8 +129,8 @@
 .icon.error {
   stroke: var(--red);
   fill: var(--red);
-  width: 18px;
-  height: 18px;
+  width: 16px;
+  height: 16px;
   position: absolute;
   top: 50%;
   right: 16px;
@@ -138,7 +138,14 @@
 }
 
 .icon.success {
+  fill: var(--green);
   stroke: var(--green);
+  width: 18px;
+  height: 18px;
+  position: absolute;
+  top: 50%;
+  right: 16px;
+  transform: translateY(-50%);
 }
 
 .errorMessage {
@@ -148,11 +155,10 @@
   font-weight: 500;
   position: absolute;
   top: 100%;
-  left: 0;
+  left: 3%;
   width: 100%;
   text-align: left;
   z-index: 3;
-  padding-top: 2px;
 }
 
 .successMessage {
@@ -160,9 +166,10 @@
   font-size: 10px;
   font-weight: 500;
   position: absolute;
-  top: 98%;
-  left: 10%;
-  transform: translateX(-10%);
+  top: 100%;
+  left: 3%;
+  width: 100%;
+  text-align: left;
   z-index: 3;
 }
 
@@ -268,11 +275,33 @@
     font-size: 14px;
   }
 
+  .errorMessage {
+    font-size: 12px;
+    line-height: 1.16;
+  }
+
+  .successMessage {
+    font-size: 12px;
+    line-height: 1.16;
+  }
+
   .iconBtn {
     right: 122px;
   }
 
   .icon {
+    width: 20px;
+    height: 20px;
+  }
+
+  .icon.error {
+    right: -8px;
+    width: 20px;
+    height: 20px;
+  }
+
+  .icon.success {
+    right: -8px;
     width: 20px;
     height: 20px;
   }

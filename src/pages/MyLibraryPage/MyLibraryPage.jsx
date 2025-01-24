@@ -1,5 +1,11 @@
+import Header from "../../components/Header/Header";
+
 const MyLibraryPage = () => {
-  return <div>MyLibraryPage</div>;
+  return (
+    <div>
+      <Header />
+    </div>
+  );
 };
 
 export default MyLibraryPage;

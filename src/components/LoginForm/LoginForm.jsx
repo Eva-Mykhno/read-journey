@@ -43,6 +43,7 @@ const LoginForm = () => {
   const handleSubmit = async (values, actions) => {
     try {
       const result = await dispatch(login(values));
+
       if (result.error) {
         setIsPasswordValid(false);
       } else {
@@ -53,6 +54,7 @@ const LoginForm = () => {
       setIsPasswordValid(false);
     }
   };
+
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
@@ -134,10 +136,10 @@ const LoginForm = () => {
             </button>
 
             {isPasswordValid === false && (
-              <span className={s.error}>Enter a valid Password</span>
+              <span className={s.errorMessage}>Enter a valid Password</span>
             )}
             {isPasswordValid === true && (
-              <span className={s.success}>Password is secure</span>
+              <span className={s.successMessage}>Password is secure</span>
             )}
           </div>
           <div className={s.links}>

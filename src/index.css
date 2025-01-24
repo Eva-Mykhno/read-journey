@@ -29,7 +29,7 @@
   --dark-gray: #1f1f1f;
   --dark: #141414;
   --border-input: rgba(249, 249, 249, 0.1);
-  --border-button: rgba(249, 249, 249.2);
+  --border-button: rgba(249, 249, 249, 0.2);
   --border-iphone: #879194;
 }
 

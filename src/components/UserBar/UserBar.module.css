@@ -1,0 +1,40 @@
+.wrapper {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+}
+
+.i {
+  width: 35px;
+  height: 35px;
+  padding: 8px;
+  border-radius: 50%;
+  border: 2px solid var(--border-button);
+  background-color: transparent;
+  color: var(--main);
+  text-align: center;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.name {
+  display: none;
+  /* color: var(--main); */
+}
+
+@media screen and (min-width: 1280px) {
+  .i {
+    width: 40px;
+    height: 40px;
+    padding: 10px;
+  }
+
+  .name {
+    display: block;
+    color: var(--main);
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.12;
+    letter-spacing: -0.02em;
+  }
+}

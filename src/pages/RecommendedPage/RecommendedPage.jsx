@@ -1,10 +1,11 @@
+import Header from "../../components/Header/Header";
 import s from "./RecommendedPage.module.css";
 
 const RecommendedPage = () => {
   return (
-    <div>
-      <p className={s.p}>Hello</p>
-    </div>
+    <main className={s.wrapRecommended}>
+      <Header />
+    </main>
   );
 };
 

@@ -1,0 +1,20 @@
+.button {
+  padding: 12px 28px;
+  outline: none;
+  border: 1px solid var(--border-button);
+  border-radius: 30px;
+  background-color: transparent;
+  color: var(--main);
+  font-size: 16px;
+  font-weight: 700px;
+  letter-spacing: 0.02em;
+}
+
+.button:hover {
+  border: 1px solid var(--main);
+  background-color: var(--main);
+  color: var(--dark-gray);
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
