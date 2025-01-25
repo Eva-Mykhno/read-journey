@@ -1,0 +1,30 @@
+.dashboard {
+  max-width: 335px;
+  width: 100%;
+  height: 478px;
+  padding: 20px;
+  border-radius: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  background-color: var(--dark-gray);
+}
+
+@media screen and (min-width: 768px) {
+  .dashboard {
+    max-width: 704px;
+    height: 336px;
+    padding: 32px;
+    flex-direction: row;
+    gap: 32px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .dashboard {
+    width: 353px;
+    height: 651px;
+    flex-direction: column;
+    gap: 20px;
+  }
+}

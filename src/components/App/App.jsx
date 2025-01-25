@@ -6,6 +6,7 @@ const RegisterPage = lazy(() =>
   import("../../pages/RegisterPage/RegisterPage")
 );
 const LoginPage = lazy(() => import("../../pages/LoginPage/LoginPage"));
+const Layout = lazy(() => import("../Layout/Layout"));
 const RecommendedPage = lazy(() =>
   import("../../pages/RecommendedPage/RecommendedPage")
 );
@@ -19,8 +20,10 @@ const App = () => {
       <Routes>
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/login" element={<LoginPage />} />
-        <Route path="/recommended" element={<RecommendedPage />} />
-        <Route path="/library" element={<MyLibraryPage />} />
+        <Route path="/" element={<Layout />}>
+          <Route path="/recommended" element={<RecommendedPage />} />
+          <Route path="/library" element={<MyLibraryPage />} />
+        </Route>
       </Routes>
     </Suspense>
   );

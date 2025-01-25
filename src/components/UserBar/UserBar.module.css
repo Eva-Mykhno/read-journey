@@ -19,16 +19,17 @@
 
 .name {
   display: none;
-  /* color: var(--main); */
 }
 
-@media screen and (min-width: 1280px) {
+@media screen and (min-width: 768px) {
   .i {
     width: 40px;
     height: 40px;
     padding: 10px;
   }
+}
 
+@media screen and (min-width: 1280px) {
   .name {
     display: block;
     color: var(--main);

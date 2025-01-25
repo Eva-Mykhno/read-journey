@@ -1,4 +1,93 @@
 .header {
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 335px;
+  width: 100vw;
   display: flex;
-  gap: 50px;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  border-radius: 15px;
+  background-color: var(--dark-gray);
+}
+
+.logo {
+  fill: var(--main);
+  stroke: var(--main);
+  width: 42px;
+  height: 17px;
+}
+
+.text {
+  display: none;
+}
+
+.wrapMobile {
+  display: flex;
+  gap: 10px;
+}
+
+.button {
+  outline: none;
+  border: none;
+  background-color: transparent;
+}
+
+.menu {
+  stroke: var(--main);
+  width: 28px;
+  height: 28px;
+}
+
+.tabletNav {
+  display: none;
+}
+
+@media screen and (min-width: 768px) {
+  .header {
+    margin-top: 32px;
+    max-width: 704px;
+  }
+
+  .wrapLogo {
+    display: flex;
+    gap: 4px;
+  }
+
+  .text {
+    display: block;
+    color: var(--main);
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    transform: translateY(-1px);
+    text-transform: uppercase;
+  }
+
+  .tabletNav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 94px;
+  }
+
+  .wrapMobile {
+    display: none;
+  }
+
+  .wrapTablet {
+    display: flex;
+    gap: 16px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .header {
+    max-width: 1216px;
+  }
+
+  .tabletNav {
+    gap: 219px;
+  }
 }

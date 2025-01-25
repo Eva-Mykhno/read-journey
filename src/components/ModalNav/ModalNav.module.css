@@ -1,0 +1,15 @@
+.button {
+  display: block;
+  position: absolute;
+  top: 34px;
+  right: 40px;
+  background-color: transparent;
+  outline: none;
+  border: none;
+}
+
+.icon {
+  width: 28px;
+  height: 28px;
+  stroke: var(--main);
+}

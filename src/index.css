@@ -31,6 +31,7 @@
   --border-input: rgba(249, 249, 249, 0.1);
   --border-button: rgba(249, 249, 249, 0.2);
   --border-iphone: #879194;
+  --overlay: rgba(20, 20, 20, 0.6);
 }
 
 body {
