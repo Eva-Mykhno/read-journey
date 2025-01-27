@@ -5,7 +5,7 @@ const sprite = "/sprite.svg";
 
 const Workout = () => {
   return (
-    <section className={s.workout}>
+    <div className={s.workout}>
       <h2 className={s.title}>Start your workout</h2>
       <div className={s.wrap}>
         <p className={s.number}>1</p>
@@ -22,12 +22,12 @@ const Workout = () => {
         </p>
       </div>
       <NavLink to="/library" className={s.links}>
-        <p className={s.link}></p>
+        <p className={s.link}>My library</p>
         <svg className={s.icon}>
           <use href={`${sprite}#icon-narrow`} />
         </svg>
       </NavLink>
-    </section>
+    </div>
   );
 };
 

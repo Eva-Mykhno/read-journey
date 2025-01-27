@@ -1,3 +1,13 @@
-.p {
-  color: var(--main);
+.page {
+  display: flex;
+}
+
+.wrapQuote {
+  display: none;
+}
+
+@media screen and (min-width: 1280px) {
+  .wrapQuote {
+    display: block;
+  }
 }

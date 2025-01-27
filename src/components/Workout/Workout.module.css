@@ -2,6 +2,8 @@
   max-width: 295px;
   width: 100%;
   height: 244px;
+  padding: 20px;
+  border-radius: 12px;
   background-color: var(--gray);
   display: flex;
   flex-direction: column;
@@ -24,6 +26,7 @@
   width: 40px;
   height: 40px;
   border-radius: 50px;
+  padding: 10px;
   background-color: var(--main);
   color: var(--dark-gray);
   text-align: center;
@@ -58,10 +61,34 @@
   letter-spacing: -0.02em;
   text-decoration: underline;
   padding-bottom: 1px;
+  cursor: pointer;
 }
 
 .icon {
   stroke: var(--main);
   width: 24px;
   height: 24px;
+  cursor: pointer;
+}
+
+@media screen and (min-width: 768px) {
+  .workout {
+    max-width: 313px;
+    height: 272px;
+  }
+
+  .title {
+    margin-bottom: 20px;
+    font-size: 20px;
+  }
+
+  .wrap {
+    margin-bottom: 6px;
+  }
+
+  .number {
+    width: 44px;
+    height: 44px;
+    font-size: 20px;
+  }
 }

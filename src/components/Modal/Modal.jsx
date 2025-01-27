@@ -1,6 +1,6 @@
 import ReactModal from "react-modal";
 import { useEffect } from "react";
-import s from "./ModalNav.module.css";
+import s from "./Modal.module.css";
 
 const sprite = "/sprite.svg";
 

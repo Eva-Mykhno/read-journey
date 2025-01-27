@@ -1,0 +1,15 @@
+.section {
+  display: flex;
+}
+
+.title {
+  color: var(--main);
+  font-size: 40px;
+}
+
+.icon {
+  stroke: var(--main);
+  fill: var(--main);
+  width: 20px;
+  height: 20px;
+}

@@ -1,6 +1,7 @@
 import { lazy, Suspense } from "react";
 import Loader from "../Loader/Loader";
 import { Routes, Route } from "react-router-dom";
+import PrivateRoute from "../../routes/PrivateRoute.jsx";
 
 const RegisterPage = lazy(() =>
   import("../../pages/RegisterPage/RegisterPage")
@@ -20,7 +21,13 @@ const App = () => {
       <Routes>
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/login" element={<LoginPage />} />
-        <Route path="/" element={<Layout />}>
+        <Route
+          path="/"
+          element={
+            <PrivateRoute>
+              <Layout />
+            </PrivateRoute>
+          }>
           <Route path="/recommended" element={<RecommendedPage />} />
           <Route path="/library" element={<MyLibraryPage />} />
         </Route>

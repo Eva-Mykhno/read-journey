@@ -54,3 +54,24 @@ export const logout = createAsyncThunk("logout", async (_, thunkAPI) => {
     return thunkAPI.rejectWithValue(error.response?.data || "Logout failed");
   }
 });
+
+export const refresh = createAsyncThunk("refresh", async (_, thunkAPI) => {
+  try {
+    const state = thunkAPI.getState();
+    const token = state.auth.token;
+    if (!token) {
+      return thunkAPI.rejectWithValue("No token available");
+    }
+
+    setAuthHeader(token);
+    const { data } = await api.get("/users/current/refresh");
+    if (!data.token) {
+      throw new Error("No token received");
+    }
+
+    setAuthHeader(data.token);
+    return data;
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error.response?.data || "Refresh failed");
+  }
+});
