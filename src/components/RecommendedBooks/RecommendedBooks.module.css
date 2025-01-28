@@ -5,6 +5,14 @@
   height: 382px;
   border-radius: 30px;
   background-color: var(--dark-gray);
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.wrapper {
+  display: flex;
+  justify-content: space-between;
 }
 
 .title {
@@ -14,10 +22,30 @@
   letter-spacing: -0.02em;
 }
 
+.narrows {
+  display: flex;
+  gap: 8px;
+}
+
+.narrow {
+  width: 32px;
+  height: 32px;
+  border: 1px solid var(--border-button);
+  border-radius: 50px;
+  background-color: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .icon {
   stroke: var(--main);
-  fill: var(--main);
   width: 20px;
   height: 20px;
   cursor: pointer;
+}
+
+.wrap {
+  display: flex;
+  gap: 21px;
 }

@@ -6,10 +6,12 @@ import {
   selectCurrentPage,
   selectTotalPages,
   selectIsLoading,
+  selectPerPage,
 } from "../../redux/books/selectors";
 import Modal from "../Modal/Modal";
 import s from "./RecommendedBooks.module.css";
-import { setCurrentPage } from "../../redux/books/slice";
+import { setCurrentPage, setBooksPerPage } from "../../redux/books/slice";
+import Loader from "../Loader/Loader";
 
 const sprite = "/sprite.svg";
 
@@ -19,29 +21,27 @@ const RecommendedBooks = () => {
   const currentPage = useSelector(selectCurrentPage);
   const totalPages = useSelector(selectTotalPages);
   const isLoading = useSelector(selectIsLoading);
+  const perPage = useSelector(selectPerPage);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedBook, setSelectedBook] = useState(null);
 
-  const getBooksPerPage = () => {
-    const width = window.innerWidth;
-    if (width < 768) return 2;
-    if (width < 1024) return 8;
-    return 10;
-  };
+  useEffect(() => {
+    const updateBooksPerPage = () => {
+      const width = window.innerWidth;
+      let booksPerPage = width < 768 ? 2 : width < 1280 ? 8 : 10;
+      dispatch(setBooksPerPage(booksPerPage));
+    };
+
+    updateBooksPerPage();
+
+    window.addEventListener("resize", updateBooksPerPage);
+    return () => window.removeEventListener("resize", updateBooksPerPage);
+  }, [dispatch]);
 
   useEffect(() => {
-    const booksPerPage = getBooksPerPage();
-    console.log(
-      "Fetching books with currentPage:",
-      currentPage,
-      "and booksPerPage:",
-      booksPerPage
-    );
-    dispatch(
-      fetchRecommendedBooks({ page: currentPage, perPage: booksPerPage })
-    );
-  }, [dispatch, currentPage]);
+    dispatch(fetchRecommendedBooks({ page: currentPage, perPage }));
+  }, [dispatch, currentPage, perPage]);
 
   const handlePageChange = (newPage) => {
     dispatch(setCurrentPage(newPage));
@@ -65,35 +65,35 @@ const RecommendedBooks = () => {
     if (currentPage < totalPages) handlePageChange(currentPage + 1);
   };
 
-  const booksPerPage = getBooksPerPage();
-  console.log("Books per page: ", booksPerPage); // debug
-  const booksToShow = books.slice(0, booksPerPage);
-  console.log("Books to show: ", booksToShow); // debu
-
-  console.log(currentPage, totalPages);
+  const booksToShow = books.slice(0, perPage);
 
   return (
     <section className={s.section}>
-      <h2 className={s.title}>Recommended</h2>
+      <div className={s.wrapper}>
+        <h2 className={s.title}>Recommended</h2>
 
-      <div className={s.narrows}>
-        <svg
-          className={`${s.icon} ${currentPage === 1 ? s.disabled : ""}`}
-          onClick={goToPrevPage}>
-          <use href={`${sprite}#icon-left`} />
-        </svg>
-        <svg
-          className={`${s.icon} ${
-            currentPage === totalPages ? s.disabled : ""
-          }`}
-          onClick={goToNextPage}>
-          <use href={`${sprite}#icon-right`} />
-        </svg>
+        <div className={s.narrows}>
+          <div className={s.narrow}>
+            <svg
+              className={`${s.icon} ${currentPage === 1 ? s.disabled : ""}`}
+              onClick={goToPrevPage}>
+              <use href={`${sprite}#icon-left`} />
+            </svg>
+          </div>
+          <div className={s.narrow}>
+            <svg
+              className={`${s.icon} ${
+                currentPage === totalPages ? s.disabled : ""
+              }`}
+              onClick={goToNextPage}>
+              <use href={`${sprite}#icon-right`} />
+            </svg>
+          </div>
+        </div>
       </div>
-
       <div className={s.wrap}>
         {isLoading ? (
-          <p>Loading...</p>
+          <Loader />
         ) : (
           booksToShow.map((book) => (
             <div

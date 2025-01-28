@@ -7,6 +7,7 @@ const initialState = {
   totalPages: 1,
   isLoading: false,
   error: null,
+  perPage: 10,
 };
 
 const booksSlice = createSlice({
@@ -16,6 +17,9 @@ const booksSlice = createSlice({
     setCurrentPage: (state, action) => {
       state.currentPage = action.payload;
     },
+    setBooksPerPage: (state, action) => {
+      state.perPage = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -24,9 +28,11 @@ const booksSlice = createSlice({
         state.error = null;
       })
       .addCase(fetchRecommendedBooks.fulfilled, (state, action) => {
-        console.log(action.payload);
-        state.books = action.payload.results;
-        state.totalPages = action.payload.totalPages;
+        const { books, totalPages, currentPage, perPage } = action.payload;
+        state.books = books;
+        state.totalPages = totalPages;
+        state.currentPage = currentPage;
+        state.perPage = perPage;
         state.isLoading = false;
       })
       .addCase(fetchRecommendedBooks.rejected, (state, action) => {
@@ -36,5 +42,5 @@ const booksSlice = createSlice({
   },
 });
 
-export const { setCurrentPage } = booksSlice.actions;
+export const { setCurrentPage, setBooksPerPage } = booksSlice.actions;
 export const booksReducer = booksSlice.reducer;

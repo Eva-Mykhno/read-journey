@@ -6,9 +6,15 @@ export const fetchRecommendedBooks = createAsyncThunk(
   async ({ page, perPage }, thunkAPI) => {
     try {
       const { data } = await api.get("/books/recommend", {
-        params: { page, perPage },
+        params: { page, limit: perPage },
       });
-      return data;
+
+      return {
+        books: data.results,
+        totalPages: data.totalPages,
+        currentPage: data.page,
+        perPage: data.perPage,
+      };
     } catch (error) {
       return thunkAPI.rejectWithValue(
         error.response?.data || "Fetching books failed"
