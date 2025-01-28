@@ -32,6 +32,12 @@ const RecommendedBooks = () => {
 
   useEffect(() => {
     const booksPerPage = getBooksPerPage();
+    console.log(
+      "Fetching books with currentPage:",
+      currentPage,
+      "and booksPerPage:",
+      booksPerPage
+    );
     dispatch(
       fetchRecommendedBooks({ page: currentPage, perPage: booksPerPage })
     );
@@ -60,32 +66,15 @@ const RecommendedBooks = () => {
   };
 
   const booksPerPage = getBooksPerPage();
+  console.log("Books per page: ", booksPerPage); // debug
   const booksToShow = books.slice(0, booksPerPage);
+  console.log("Books to show: ", booksToShow); // debu
+
+  console.log(currentPage, totalPages);
 
   return (
     <section className={s.section}>
       <h2 className={s.title}>Recommended</h2>
-
-      <div className={s.booksGrid}>
-        {isLoading ? (
-          <p>Loading...</p>
-        ) : (
-          booksToShow.map((book) => (
-            <div
-              key={book._id}
-              className={s.bookCard}
-              onClick={() => openModal(book)}>
-              <img
-                src={book.imageUrl}
-                alt={book.title}
-                className={s.bookImage}
-              />
-              <h3 className={s.bookTitle}>{book.title}</h3>
-              <p className={s.bookAuthor}>{book.author}</p>
-            </div>
-          ))
-        )}
-      </div>
 
       <div className={s.narrows}>
         <svg
@@ -100,6 +89,27 @@ const RecommendedBooks = () => {
           onClick={goToNextPage}>
           <use href={`${sprite}#icon-right`} />
         </svg>
+      </div>
+
+      <div className={s.wrap}>
+        {isLoading ? (
+          <p>Loading...</p>
+        ) : (
+          booksToShow.map((book) => (
+            <div
+              key={book._id}
+              className={s.book}
+              onClick={() => openModal(book)}>
+              <img
+                src={book.imageUrl}
+                alt={book.title}
+                className={s.bookImage}
+              />
+              <h3 className={s.bookTitle}>{book.title}</h3>
+              <p className={s.bookAuthor}>{book.author}</p>
+            </div>
+          ))
+        )}
       </div>
 
       {isModalOpen && (

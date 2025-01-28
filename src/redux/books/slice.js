@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchRecommendedBooks } from "./operations"; // Путь до операций
+import { fetchRecommendedBooks } from "./operations";
 
 const initialState = {
   books: [],
@@ -24,6 +24,7 @@ const booksSlice = createSlice({
         state.error = null;
       })
       .addCase(fetchRecommendedBooks.fulfilled, (state, action) => {
+        console.log(action.payload);
         state.books = action.payload.results;
         state.totalPages = action.payload.totalPages;
         state.isLoading = false;
