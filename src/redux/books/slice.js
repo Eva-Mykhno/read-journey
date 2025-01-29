@@ -7,7 +7,7 @@ const initialState = {
   totalPages: 1,
   isLoading: false,
   error: null,
-  perPage: 10,
+  perPage: 2,
 };
 
 const booksSlice = createSlice({
@@ -28,11 +28,10 @@ const booksSlice = createSlice({
         state.error = null;
       })
       .addCase(fetchRecommendedBooks.fulfilled, (state, action) => {
-        const { books, totalPages, currentPage, perPage } = action.payload;
+        const { books, totalPages, currentPage } = action.payload;
         state.books = books;
         state.totalPages = totalPages;
         state.currentPage = currentPage;
-        state.perPage = perPage;
         state.isLoading = false;
       })
       .addCase(fetchRecommendedBooks.rejected, (state, action) => {

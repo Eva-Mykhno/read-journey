@@ -29,8 +29,13 @@ const RecommendedBooks = () => {
   useEffect(() => {
     const updateBooksPerPage = () => {
       const width = window.innerWidth;
-      let booksPerPage = width < 768 ? 2 : width < 1280 ? 8 : 10;
-      dispatch(setBooksPerPage(booksPerPage));
+      if (width < 768) {
+        dispatch(setBooksPerPage(2));
+      } else if (width < 1280) {
+        dispatch(setBooksPerPage(8));
+      } else {
+        dispatch(setBooksPerPage(10));
+      }
     };
 
     updateBooksPerPage();
@@ -115,10 +120,17 @@ const RecommendedBooks = () => {
       {isModalOpen && (
         <Modal isOpen={isModalOpen} onClose={closeModal}>
           <div className={s.modalContent}>
-            <h3>{selectedBook.title}</h3>
-            <p>{selectedBook.author}</p>
-            <p>{selectedBook.totalPages} pages</p>
-            <button className={s.addToLibraryBtn}>Add to library</button>
+            <img
+              src={selectedBook.imageUrl}
+              alt={selectedBook.title}
+              className={s.imgModal}
+            />
+            <h3 className={s.titleModal}>{selectedBook.title}</h3>
+            <p className={s.authorModal}>{selectedBook.author}</p>
+            <p className={s.pages}>{selectedBook.totalPages} pages</p>
+            <button className={s.button} type="button">
+              Add to library
+            </button>
           </div>
         </Modal>
       )}

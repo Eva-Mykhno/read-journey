@@ -8,10 +8,9 @@ const customStyles = {
   content: {
     position: "absolute",
     top: "50%",
-    right: "50%",
-    left: "auto",
+    left: "50%",
     bottom: "auto",
-    transform: "translate(-50% -50%)",
+    transform: "translate(-50%, -50%)",
     padding: "40px",
     overflow: "auto",
 
