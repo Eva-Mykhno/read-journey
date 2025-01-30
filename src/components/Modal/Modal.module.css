@@ -6,6 +6,7 @@
   background-color: transparent;
   outline: none;
   border: none;
+  z-index: 101;
 }
 
 .icon {
