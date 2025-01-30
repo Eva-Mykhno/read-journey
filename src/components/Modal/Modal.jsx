@@ -23,8 +23,6 @@ const customStyles = {
   },
 };
 
-ReactModal.setAppElement("#root");
-
 const Modal = ({ isOpen, onClose, children }) => {
   useEffect(() => {
     if (isOpen) {

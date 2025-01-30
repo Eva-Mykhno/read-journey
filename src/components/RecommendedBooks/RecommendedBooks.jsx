@@ -12,6 +12,7 @@ import Modal from "../Modal/Modal";
 import s from "./RecommendedBooks.module.css";
 import { setCurrentPage, setBooksPerPage } from "../../redux/books/slice";
 import Loader from "../Loader/Loader";
+import BookCard from "../BookCard/BookCard";
 
 const sprite = "/sprite.svg";
 
@@ -26,22 +27,33 @@ const RecommendedBooks = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedBook, setSelectedBook] = useState(null);
 
+  // useEffect(() => {
+  //   const updateBooksPerPage = () => {
+  //     const width = window.innerWidth;
+  //     if (width < 768) {
+  //       dispatch(setBooksPerPage(2));
+  //     } else if (width < 1280) {
+  //       dispatch(setBooksPerPage(8));
+  //     } else {
+  //       dispatch(setBooksPerPage(10));
+  //     }
+  //   };
+
+  //   updateBooksPerPage();
+
+  //   window.addEventListener("resize", updateBooksPerPage);
+  //   return () => window.removeEventListener("resize", updateBooksPerPage);
+  // }, [dispatch]);
+
   useEffect(() => {
-    const updateBooksPerPage = () => {
-      const width = window.innerWidth;
-      if (width < 768) {
-        dispatch(setBooksPerPage(2));
-      } else if (width < 1280) {
-        dispatch(setBooksPerPage(8));
-      } else {
-        dispatch(setBooksPerPage(10));
-      }
-    };
-
-    updateBooksPerPage();
-
-    window.addEventListener("resize", updateBooksPerPage);
-    return () => window.removeEventListener("resize", updateBooksPerPage);
+    const width = window.innerWidth;
+    if (width < 768) {
+      dispatch(setBooksPerPage(2));
+    } else if (width < 1280) {
+      dispatch(setBooksPerPage(8));
+    } else {
+      dispatch(setBooksPerPage(10));
+    }
   }, [dispatch]);
 
   useEffect(() => {
@@ -70,7 +82,7 @@ const RecommendedBooks = () => {
     if (currentPage < totalPages) handlePageChange(currentPage + 1);
   };
 
-  const booksToShow = books.slice(0, perPage);
+  // const booksToShow = books.slice(0, perPage);
 
   return (
     <section className={s.section}>
@@ -96,12 +108,12 @@ const RecommendedBooks = () => {
           </div>
         </div>
       </div>
-      <div className={s.wrap}>
+      <ul className={s.wrap}>
         {isLoading ? (
           <Loader />
         ) : (
-          booksToShow.map((book) => (
-            <div
+          books.map((book) => (
+            <li
               key={book._id}
               className={s.book}
               onClick={() => openModal(book)}>
@@ -112,26 +124,14 @@ const RecommendedBooks = () => {
               />
               <h3 className={s.bookTitle}>{book.title}</h3>
               <p className={s.bookAuthor}>{book.author}</p>
-            </div>
+            </li>
           ))
         )}
-      </div>
+      </ul>
 
-      {isModalOpen && (
+      {isModalOpen && selectedBook && (
         <Modal isOpen={isModalOpen} onClose={closeModal}>
-          <div className={s.modalContent}>
-            <img
-              src={selectedBook.imageUrl}
-              alt={selectedBook.title}
-              className={s.imgModal}
-            />
-            <h3 className={s.titleModal}>{selectedBook.title}</h3>
-            <p className={s.authorModal}>{selectedBook.author}</p>
-            <p className={s.pages}>{selectedBook.totalPages} pages</p>
-            <button className={s.button} type="button">
-              Add to library
-            </button>
-          </div>
+          <BookCard book={selectedBook} />
         </Modal>
       )}
     </section>

@@ -1,0 +1,49 @@
+.modalContent {
+  max-width: 255px;
+  width: 100%;
+  height: 421px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.imgModal {
+  margin-bottom: 16px;
+  /* display: block; */
+  width: 140px;
+  height: 213px;
+  border-radius: 8px;
+}
+
+.titleModal {
+  margin-bottom: 2px;
+  color: var(--main);
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.authorModal {
+  margin-bottom: 4px;
+  color: var(--light-gray);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+}
+
+.pages {
+  margin-bottom: 20px;
+  color: var(--main);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+}
+
+.button {
+  padding: 12px 24px;
+  outline: none;
+  border: 1px solid var(--border-button);
+  border-radius: 30px;
+  background-color: transparent;
+  color: var(--main);
+}

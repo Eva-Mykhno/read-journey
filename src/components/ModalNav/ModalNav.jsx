@@ -24,8 +24,6 @@ const customStyles = {
   },
 };
 
-ReactModal.setAppElement("#root");
-
 const ModalNav = ({ isOpen, onClose, children }) => {
   useEffect(() => {
     if (isOpen) {

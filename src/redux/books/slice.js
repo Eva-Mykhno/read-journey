@@ -28,10 +28,9 @@ const booksSlice = createSlice({
         state.error = null;
       })
       .addCase(fetchRecommendedBooks.fulfilled, (state, action) => {
-        const { books, totalPages, currentPage } = action.payload;
+        const { books, totalPages } = action.payload;
         state.books = books;
         state.totalPages = totalPages;
-        state.currentPage = currentPage;
         state.isLoading = false;
       })
       .addCase(fetchRecommendedBooks.rejected, (state, action) => {
