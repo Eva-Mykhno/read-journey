@@ -12,9 +12,11 @@ const UserBar = () => {
     dispatch(fetchUser());
   }, [dispatch]);
 
+  const firstLetter = name ? name.charAt(0).toUpperCase() : "";
+
   return (
     <section className={s.wrapper}>
-      <p className={s.i}>I</p>
+      <p className={s.letter}>{firstLetter}</p>
       <p className={s.name}>{name}</p>
     </section>
   );
