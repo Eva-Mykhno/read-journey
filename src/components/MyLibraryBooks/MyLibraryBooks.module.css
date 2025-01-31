@@ -1,0 +1,151 @@
+.library {
+  width: 100%;
+  max-width: 335px;
+  min-height: 407px;
+  padding: 40px 20px;
+  border-radius: 30px;
+  background-color: var(--dark-gray);
+}
+
+.title {
+  color: var(--main);
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.list {
+  margin-top: 34px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 21px;
+}
+
+.item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.image {
+  width: 137px;
+  height: 208px;
+  border-radius: 8px;
+}
+
+.bookTitle {
+  margin-top: 8px;
+  max-width: 90px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: var(--main);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.author {
+  margin-top: 2px;
+  color: var(--light-gray);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+}
+
+.button {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 28px;
+  height: 28px;
+  border: 1px solid var(--border-trash);
+  border-radius: 50px;
+  background-color: var(--background-trash);
+}
+
+.icon {
+  stroke: var(--trash);
+  width: 14px;
+  height: 14px;
+}
+
+.wrap {
+  margin-top: 83px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.wrapImg {
+  width: 100px;
+  height: 100px;
+  border-radius: 100px;
+  background-color: var(--gray);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.img {
+  width: 50px;
+  height: 50px;
+}
+
+.text {
+  width: 197px;
+  text-align: center;
+  color: var(--main);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.28;
+  letter-spacing: -0.02em;
+}
+
+.span {
+  color: var(--light-gray);
+}
+
+@media screen and (min-width: 768px) {
+  .library {
+    max-width: 704px;
+    min-height: 518px;
+    padding: 40px;
+  }
+
+  .title {
+    font-size: 28px;
+  }
+
+  .wrap {
+    margin-top: 100px;
+    gap: 20px;
+  }
+
+  .wrapImg {
+    width: 130px;
+    height: 130px;
+  }
+
+  .img {
+    width: 70px;
+    height: 70px;
+  }
+
+  .text {
+    width: 274px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .library {
+    max-width: 847px;
+    min-height: 651px;
+  }
+
+  .wrap {
+    margin-top: 161px;
+  }
+}

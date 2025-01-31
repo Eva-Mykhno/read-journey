@@ -1,6 +1,8 @@
 import * as Yup from "yup";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import s from "./FiltersRecommended.module.css";
+import { useDispatch } from "react-redux";
+import { setFilters } from "../../redux/books/slice";
 
 const filtersSchema = Yup.object().shape({
   title: Yup.string().min(3, "Too short").max(150, "Too long"),
@@ -8,15 +10,22 @@ const filtersSchema = Yup.object().shape({
 });
 
 const FiltersRecommended = () => {
+  const dispatch = useDispatch();
+
   const initialFiltersValues = {
     title: "",
     author: "",
   };
 
+  const handleSubmit = (values) => {
+    dispatch(setFilters(values));
+  };
+
   return (
     <Formik
       initialValues={initialFiltersValues}
-      validationSchema={filtersSchema}>
+      validationSchema={filtersSchema}
+      onSubmit={handleSubmit}>
       <Form className={s.form}>
         <p className={s.text}>Filters</p>
         <div className={s.wrap}>

@@ -7,6 +7,7 @@ import {
   selectTotalPages,
   selectIsLoading,
   selectPerPage,
+  selectFilters,
 } from "../../redux/books/selectors";
 import Modal from "../Modal/Modal";
 import s from "./RecommendedBooks.module.css";
@@ -23,27 +24,10 @@ const RecommendedBooks = () => {
   const totalPages = useSelector(selectTotalPages);
   const isLoading = useSelector(selectIsLoading);
   const perPage = useSelector(selectPerPage);
+  const filters = useSelector(selectFilters);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedBook, setSelectedBook] = useState(null);
-
-  // useEffect(() => {
-  //   const updateBooksPerPage = () => {
-  //     const width = window.innerWidth;
-  //     if (width < 768) {
-  //       dispatch(setBooksPerPage(2));
-  //     } else if (width < 1280) {
-  //       dispatch(setBooksPerPage(8));
-  //     } else {
-  //       dispatch(setBooksPerPage(10));
-  //     }
-  //   };
-
-  //   updateBooksPerPage();
-
-  //   window.addEventListener("resize", updateBooksPerPage);
-  //   return () => window.removeEventListener("resize", updateBooksPerPage);
-  // }, [dispatch]);
 
   useEffect(() => {
     const width = window.innerWidth;
@@ -57,8 +41,8 @@ const RecommendedBooks = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    dispatch(fetchRecommendedBooks({ page: currentPage, perPage }));
-  }, [dispatch, currentPage, perPage]);
+    dispatch(fetchRecommendedBooks({ page: currentPage, perPage, filters }));
+  }, [dispatch, currentPage, perPage, filters]);
 
   const handlePageChange = (newPage) => {
     dispatch(setCurrentPage(newPage));
@@ -82,22 +66,20 @@ const RecommendedBooks = () => {
     if (currentPage < totalPages) handlePageChange(currentPage + 1);
   };
 
-  // const booksToShow = books.slice(0, perPage);
-
   return (
     <section className={s.section}>
       <div className={s.wrapper}>
         <h2 className={s.title}>Recommended</h2>
 
         <div className={s.narrows}>
-          <div className={s.narrow}>
+          <button className={s.narrow}>
             <svg
               className={`${s.icon} ${currentPage === 1 ? s.disabled : ""}`}
               onClick={goToPrevPage}>
               <use href={`${sprite}#icon-left`} />
             </svg>
-          </div>
-          <div className={s.narrow}>
+          </button>
+          <button type="button" className={s.narrow}>
             <svg
               className={`${s.icon} ${
                 currentPage === totalPages ? s.disabled : ""
@@ -105,13 +87,13 @@ const RecommendedBooks = () => {
               onClick={goToNextPage}>
               <use href={`${sprite}#icon-right`} />
             </svg>
-          </div>
+          </button>
         </div>
       </div>
       <ul className={s.wrap}>
         {isLoading ? (
           <Loader />
-        ) : (
+        ) : books.length > 0 ? (
           books.map((book) => (
             <li
               key={book._id}
@@ -126,6 +108,11 @@ const RecommendedBooks = () => {
               <p className={s.bookAuthor}>{book.author}</p>
             </li>
           ))
+        ) : (
+          <p className={s.noResults}>
+            No books found for your search. Please, change the book title or
+            book author.
+          </p>
         )}
       </ul>
 

@@ -50,6 +50,15 @@
   cursor: none;
 }
 
+.noResults {
+  text-align: center;
+  text-wrap: wrap;
+  color: var(--main);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
 .wrap {
   display: flex;
   gap: 21px;

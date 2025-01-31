@@ -1,4 +1,3 @@
-import clsx from "clsx";
 import Workout from "../../components/Workout/Workout";
 import Dashboard from "../../components/Dashboard/Dashboard";
 import Quote from "../../components/Quote/Quote";
@@ -8,17 +7,15 @@ import FiltersRecommended from "../../components/FiltersRecommended/FiltersRecom
 
 const RecommendedPage = () => {
   return (
-    <main className={clsx(s.page, "container")}>
-      <div>
-        <Dashboard>
-          <FiltersRecommended />
-          <Workout />
-          <div className={s.wrapQuote}>
-            <Quote />
-          </div>
-        </Dashboard>
-        <RecommendedBooks />
-      </div>
+    <main className={s.page}>
+      <Dashboard>
+        <FiltersRecommended />
+        <Workout />
+        <div className={s.wrapQuote}>
+          <Quote />
+        </div>
+      </Dashboard>
+      <RecommendedBooks />
     </main>
   );
 };
