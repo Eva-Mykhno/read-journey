@@ -17,7 +17,6 @@ const initialState = {
     title: "",
     author: "",
   },
-  addingBookId: null,
 };
 
 const booksSlice = createSlice({
@@ -51,14 +50,15 @@ const booksSlice = createSlice({
         state.error = action.payload;
       })
       .addCase(addBookToLibrary.pending, (state, action) => {
-        state.addingBookId = action.meta.arg;
+        state.isLoading = true;
+        state.error = action.payload;
       })
       .addCase(addBookToLibrary.fulfilled, (state, action) => {
-        state.addingBookId = null;
         state.userLibraryBooks.push(action.payload);
+        state.isLoading = false;
       })
       .addCase(addBookToLibrary.rejected, (state, action) => {
-        state.addingBookId = null;
+        state.isLoading = false;
         state.error = action.payload;
       })
       .addCase(fetchUserLibrary.pending, (state) => {

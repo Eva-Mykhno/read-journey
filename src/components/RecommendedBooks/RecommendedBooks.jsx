@@ -118,7 +118,7 @@ const RecommendedBooks = () => {
 
       {isModalOpen && selectedBook && (
         <Modal isOpen={isModalOpen} onClose={closeModal}>
-          <BookCard book={selectedBook} />
+          <BookCard book={selectedBook} closeModal={closeModal} />
         </Modal>
       )}
     </section>
