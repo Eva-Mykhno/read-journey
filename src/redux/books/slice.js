@@ -4,6 +4,7 @@ import {
   addBookToLibrary,
   fetchUserLibrary,
   removeBook,
+  addUserBook,
 } from "./operations";
 
 const initialState = {
@@ -59,6 +60,17 @@ const booksSlice = createSlice({
         state.isLoading = false;
       })
       .addCase(addBookToLibrary.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload;
+      })
+      .addCase(addUserBook.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(addUserBook.fulfilled, (state, action) => {
+        state.userLibraryBooks.push(action.payload);
+        state.isLoading = false;
+      })
+      .addCase(addUserBook.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload;
       })

@@ -35,6 +35,20 @@ export const addBookToLibrary = createAsyncThunk(
   }
 );
 
+export const addUserBook = createAsyncThunk(
+  "books/addUserBook",
+  async (bookData, thunkAPI) => {
+    try {
+      const { data } = await api.post("/books/add", bookData);
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(
+        error.response?.data || "Failed to add user book"
+      );
+    }
+  }
+);
+
 export const fetchUserLibrary = createAsyncThunk(
   "books/fetchUserLibrary",
   async (_, thunkAPI) => {

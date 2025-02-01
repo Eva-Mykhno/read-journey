@@ -35,6 +35,7 @@
   --background-trash: rgba(232, 80, 80, 0.1);
   --border-trash: rgba(232, 80, 80, 0.2);
   --trash: #e85050;
+  --border-modal: rgba(104, 104, 104, 0.2);
 }
 
 body {

@@ -1,0 +1,111 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.title {
+  padding-left: 14px;
+  color: var(--main);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+}
+
+.wrap {
+  position: relative;
+}
+
+.inlineLabel {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--light-gray);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.errorMessage {
+  display: block;
+  color: var(--red);
+  font-size: 10px;
+  font-weight: 500;
+  position: absolute;
+  top: 100%;
+  left: 3%;
+  width: 100%;
+  text-align: left;
+  z-index: 3;
+}
+
+.inputTitle {
+  width: 100%;
+  padding: 14px 14px 14px 74px;
+  border-radius: 12px;
+  color: var(--main);
+  background-color: var(--gray);
+  outline: none;
+  border: 1px solid transparent;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  transition: all 0.3s ease;
+}
+
+.inputAuthor {
+  width: 100%;
+  padding: 14px 14px 14px 80px;
+  border-radius: 12px;
+  color: var(--main);
+  background-color: var(--gray);
+  outline: none;
+  border: 1px solid transparent;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  transition: all 0.3s ease;
+}
+
+.inputPages {
+  width: 100%;
+  padding: 14px 14px 14px 118px;
+  border-radius: 12px;
+  color: var(--main);
+  background-color: var(--gray);
+  outline: none;
+  border: 1px solid transparent;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  transition: all 0.3s ease;
+}
+
+.inputAuthor::placeholder,
+.inputTitle::placeholder,
+.inputPages::placeholder {
+  color: var(--main);
+}
+
+.inputAuthor:hover,
+.inputTitle:hover,
+.inputPages:hover {
+  border: 1px solid var(--border-input);
+}
+
+.button {
+  margin-top: 12px;
+  max-width: 107px;
+  outline: none;
+  padding: 10px 20px;
+  border-radius: 30px;
+  border: 1px solid var(--border-button);
+  background-color: transparent;
+  color: var(--main);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}

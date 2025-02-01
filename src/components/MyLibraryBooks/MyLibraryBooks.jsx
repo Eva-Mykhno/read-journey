@@ -40,7 +40,16 @@ const MyLibraryBooks = () => {
         <ul className={s.list}>
           {userLibraryBooks.map((book) => (
             <li key={book._id} className={s.item}>
-              <img src={book.imageUrl} alt={book.title} className={s.image} />
+              {book.imageUrl ? (
+                <img src={book.imageUrl} alt={book.title} className={s.image} />
+              ) : (
+                <div className={s.noImage}>
+                  <picture>
+                    <source srcSet="/img/book-1x.webp 1x, /img/book-2x.webp 2x, /img/book-1x.png 1x, /img/book-2x.png 2x" />
+                    <img src="/img/book-1x.png" alt="No cover available" />
+                  </picture>
+                </div>
+              )}
               <h3 className={s.bookTitle}>{book.title}</h3>
               <p className={s.author}>{book.author}</p>
               <button

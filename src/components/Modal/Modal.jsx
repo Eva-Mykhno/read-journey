@@ -14,7 +14,7 @@ const customStyles = {
     transform: "translate(-50%, -50%)",
     padding: "40px",
     overflow: "auto",
-    border: "none",
+    border: "1px solid var(--border-modal)",
     borderRadius: "12px",
     backgroundColor: "var(--dark-gray)",
     maxWidth: "100vh",

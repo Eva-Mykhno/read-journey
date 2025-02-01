@@ -33,6 +33,16 @@
   border-radius: 8px;
 }
 
+.noImage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--gray);
+  border-radius: 8px;
+  width: 137px;
+  height: 208px;
+}
+
 .bookTitle {
   margin-top: 8px;
   max-width: 90px;
