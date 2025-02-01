@@ -3,6 +3,7 @@ import {
   fetchRecommendedBooks,
   addBookToLibrary,
   fetchUserLibrary,
+  removeBook,
 } from "./operations";
 
 const initialState = {
@@ -70,6 +71,19 @@ const booksSlice = createSlice({
         state.isLoading = false;
       })
       .addCase(fetchUserLibrary.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload;
+      })
+      .addCase(removeBook.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(removeBook.fulfilled, (state, action) => {
+        state.userLibraryBooks = state.userLibraryBooks.filter(
+          (book) => book._id !== action.payload
+        );
+        state.isLoading = false;
+      })
+      .addCase(removeBook.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload;
       });

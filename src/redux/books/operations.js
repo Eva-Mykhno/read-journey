@@ -48,3 +48,17 @@ export const fetchUserLibrary = createAsyncThunk(
     }
   }
 );
+
+export const removeBook = createAsyncThunk(
+  "books/removeFromLibrary",
+  async (bookId, thunkAPI) => {
+    try {
+      await api.delete(`/books/remove/${bookId}`);
+      return bookId;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(
+        error.response?.data || "Failed to remove book"
+      );
+    }
+  }
+);

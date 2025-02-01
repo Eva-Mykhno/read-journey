@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import s from "./MyLibraryBooks.module.css";
-import { fetchUserLibrary } from "../../redux/books/operations";
+import { fetchUserLibrary, removeBook } from "../../redux/books/operations";
 import {
   selectError,
   selectIsLoading,
@@ -21,6 +21,10 @@ const MyLibraryBooks = () => {
     dispatch(fetchUserLibrary());
   }, [dispatch]);
 
+  const handleRemoveBook = (bookId) => {
+    dispatch(removeBook(bookId));
+  };
+
   if (isLoading) {
     return <Loader />;
   }
@@ -39,7 +43,10 @@ const MyLibraryBooks = () => {
               <img src={book.imageUrl} alt={book.title} className={s.image} />
               <h3 className={s.bookTitle}>{book.title}</h3>
               <p className={s.author}>{book.author}</p>
-              <button type="button" className={s.button}>
+              <button
+                type="button"
+                className={s.button}
+                onClick={() => handleRemoveBook(book._id)}>
                 <svg className={s.icon}>
                   <use href={`${sprite}#icon-trash`} />
                 </svg>
