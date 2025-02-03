@@ -36,6 +36,7 @@
   --border-trash: rgba(232, 80, 80, 0.2);
   --trash: #e85050;
   --border-modal: rgba(104, 104, 104, 0.2);
+  --library-recommend: #e3e3e3;
 }
 
 body {

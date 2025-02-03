@@ -6,7 +6,7 @@ import s from "./MyLibraryPage.module.css";
 
 const MyLibraryPage = () => {
   return (
-    <main className={s.library}>
+    <main className={s.page}>
       <Dashboard>
         <AddBook />
         <RecommendedForLibrary />

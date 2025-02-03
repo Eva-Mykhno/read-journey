@@ -28,6 +28,16 @@ const registerSchema = Yup.object().shape({
     .required("Enter a valid Password*"),
 });
 
+const toastConfig = {
+  position: "top-center",
+  autoClose: 5000,
+  hideProgressBar: false,
+  closeOnClick: true,
+  pauseOnHover: true,
+  draggable: true,
+  theme: "dark",
+};
+
 const RegisterForm = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -59,29 +69,13 @@ const RegisterForm = () => {
           ? "A user with such email already registered."
           : "Something went wrong. Please try again.";
 
-        toast.error(errorMessage, {
-          position: "top-center",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          theme: "dark",
-        });
+        toast.error(errorMessage, toastConfig);
       } else {
         actions.resetForm();
-        toast.success("Registration successful!", {
-          position: "top-center",
-          autoClose: 2000,
-          theme: "dark",
-        });
+        toast.success("Registration successful!", toastConfig);
       }
     } catch {
-      toast.error("Something went wrong. Please try again.", {
-        position: "top-center",
-        autoClose: 3000,
-        theme: "dark",
-      });
+      toast.error("Something went wrong. Please try again.", toastConfig);
     }
   };
 

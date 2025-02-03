@@ -8,6 +8,16 @@ import { selectUserLibraryBooks } from "../../redux/books/selectors";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
+const toastConfig = {
+  position: "top-center",
+  autoClose: 5000,
+  hideProgressBar: false,
+  closeOnClick: true,
+  pauseOnHover: true,
+  draggable: true,
+  theme: "dark",
+};
+
 const BookCard = ({ book, closeModal }) => {
   const dispatch = useDispatch();
   const userLibraryBooks = useSelector(selectUserLibraryBooks);
@@ -17,28 +27,15 @@ const BookCard = ({ book, closeModal }) => {
     const bookExists = userLibraryBooks.some((b) => b.title === book.title);
 
     if (bookExists) {
-      toast.error("This book is already in your library", {
-        position: "top-center",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        theme: "dark",
-      });
+      toast.error("This book is already in your library", toastConfig);
       return;
     }
     await dispatch(addBookToLibrary(bookId));
     closeModal();
-    toast.success("The book has been successfully added to your library", {
-      position: "top-center",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      theme: "dark",
-    });
+    toast.success(
+      "The book has been successfully added to your library",
+      toastConfig
+    );
   };
 
   return (
