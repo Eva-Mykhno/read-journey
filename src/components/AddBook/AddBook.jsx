@@ -56,14 +56,20 @@ const AddBook = () => {
     }
 
     try {
-      await dispatch(addUserBook(values)).unwrap();
-      setIsModalOpen(true);
-      actions.resetForm();
-      toast.success(
-        "Your book has been successfully added to your library",
-        toastConfig
-      );
-    } catch {
+      const resultAction = await dispatch(addUserBook(values)).unwrap();
+
+      console.log("Добавленная книга (из redux-thunk):", resultAction);
+
+      if (resultAction) {
+        setIsModalOpen(true);
+        actions.resetForm();
+        toast.success(
+          "Your book has been successfully added to your library",
+          toastConfig
+        );
+      }
+    } catch (error) {
+      console.error("Error adding book:", error);
       toast.error("Something went wrong, try again...", toastConfig);
     }
   };
@@ -131,7 +137,7 @@ const AddBook = () => {
         )}
       </Formik>
       {isModalOpen && (
-        <Modal>
+        <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
           <SuccessAdd />
         </Modal>
       )}

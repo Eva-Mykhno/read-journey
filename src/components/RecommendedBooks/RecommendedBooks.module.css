@@ -1,5 +1,4 @@
 .section {
-  padding: 40px 20px;
   width: 100%;
   max-width: 335px;
   height: 382px;
@@ -61,7 +60,7 @@
 
 .wrap {
   display: flex;
-  gap: 21px;
+  gap: 4px;
 }
 
 .book {
@@ -93,6 +92,16 @@
   font-size: 10px;
   font-weight: 500;
   letter-spacing: -0.02em;
+}
+
+@media screen and (min-width: 375px) {
+  .section {
+    padding: 40px 20px;
+  }
+
+  .wrap {
+    gap: 21px;
+  }
 }
 
 @media screen and (min-width: 768px) {

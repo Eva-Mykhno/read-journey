@@ -5,6 +5,9 @@ import {
   fetchUserLibrary,
   removeBook,
   addUserBook,
+  startReadingBook,
+  finishReadingBook,
+  fetchUserBooks,
 } from "./operations";
 
 const initialState = {
@@ -19,6 +22,7 @@ const initialState = {
     title: "",
     author: "",
   },
+  status: "",
 };
 
 const booksSlice = createSlice({
@@ -33,6 +37,9 @@ const booksSlice = createSlice({
     },
     setFilters: (state, action) => {
       state.filters = action.payload;
+    },
+    setStatus: (state, action) => {
+      state.status = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -98,10 +105,79 @@ const booksSlice = createSlice({
       .addCase(removeBook.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload;
+      })
+      .addCase(startReadingBook.pending, (state) => {
+        state.isLoading = true;
+        state.error = null;
+      })
+      .addCase(startReadingBook.fulfilled, (state, action) => {
+        const updatedBook = action.payload;
+        const index = state.userLibraryBooks.findIndex(
+          (book) => book._id === updatedBook._id
+        );
+        if (index !== -1) {
+          state.userLibraryBooks[index] = updatedBook;
+        } else {
+          state.userLibraryBooks.push(updatedBook);
+        }
+        const newProgress =
+          updatedBook.progress[updatedBook.progress.length - 1];
+        if (newProgress && newProgress.status === "active") {
+          state.currentPage = newProgress.startPage;
+        }
+
+        state.isLoading = false;
+      })
+      .addCase(startReadingBook.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload;
+      })
+      .addCase(finishReadingBook.pending, (state) => {
+        state.isLoading = true;
+        state.error = null;
+      })
+      .addCase(finishReadingBook.fulfilled, (state, action) => {
+        const updatedBook = action.payload;
+        const index = state.userLibraryBooks.findIndex(
+          (book) => book._id === updatedBook._id
+        );
+        if (index !== -1) {
+          state.userLibraryBooks[index] = updatedBook;
+        }
+        const updatedProgress = updatedBook.progress;
+        const currentProgress = updatedProgress.find(
+          (item) => item.status === "active"
+        );
+
+        if (currentProgress) {
+          currentProgress.status = "inactive";
+        }
+        if (action.payload.timeLeftToRead) {
+          const { hours, minutes, seconds } = action.payload.timeLeftToRead;
+          state.timeLeftToRead = { hours, minutes, seconds };
+        }
+
+        state.isLoading = false;
+      })
+      .addCase(finishReadingBook.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload;
+      })
+      .addCase(fetchUserBooks.pending, (state) => {
+        state.isLoading = true;
+        state.error = null;
+      })
+      .addCase(fetchUserBooks.fulfilled, (state, action) => {
+        state.userLibraryBooks = action.payload;
+        state.isLoading = false;
+      })
+      .addCase(fetchUserBooks.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload;
       });
   },
 });
 
-export const { setCurrentPage, setBooksPerPage, setFilters } =
+export const { setCurrentPage, setBooksPerPage, setFilters, setStatus } =
   booksSlice.actions;
 export const booksReducer = booksSlice.reducer;

@@ -40,6 +40,7 @@ export const addUserBook = createAsyncThunk(
   async (bookData, thunkAPI) => {
     try {
       const { data } = await api.post("/books/add", bookData);
+
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(
@@ -72,6 +73,56 @@ export const removeBook = createAsyncThunk(
     } catch (error) {
       return thunkAPI.rejectWithValue(
         error.response?.data || "Failed to remove book"
+      );
+    }
+  }
+);
+
+export const startReadingBook = createAsyncThunk(
+  "books/startReading",
+  async ({ bookId, page }, thunkAPI) => {
+    try {
+      const { data } = await api.post("/books/reading/start", {
+        id: String(bookId),
+        page: Number(page),
+      });
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(
+        error.response?.data || "Failed to start reading"
+      );
+    }
+  }
+);
+
+export const finishReadingBook = createAsyncThunk(
+  "books/finishReading",
+  async ({ bookId, page }, thunkAPI) => {
+    try {
+      const { data } = await api.post("/books/reading/finish", {
+        id: String(bookId),
+        page: Number(page),
+      });
+
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(
+        error.response?.data || "Failed to finish reading"
+      );
+    }
+  }
+);
+
+export const fetchUserBooks = createAsyncThunk(
+  "books/fetchUserBooks",
+  async (status, thunkAPI) => {
+    try {
+      const { data } = await api.get(`/books/own?status=${status}`);
+
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(
+        error.response?.data || "Failed to fetch user's books"
       );
     }
   }

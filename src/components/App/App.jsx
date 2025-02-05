@@ -14,6 +14,9 @@ const RecommendedPage = lazy(() =>
 const MyLibraryPage = lazy(() =>
   import("../../pages/MyLibraryPage/MyLibraryPage")
 );
+const ReadingPage = lazy(() =>
+  import("../../pages/ReadingPage/ReadingPage.jsx")
+);
 
 const App = () => {
   return (
@@ -30,6 +33,7 @@ const App = () => {
           }>
           <Route path="/recommended" element={<RecommendedPage />} />
           <Route path="/library" element={<MyLibraryPage />} />
+          <Route path="/reading" element={<ReadingPage />} />
         </Route>
       </Routes>
     </Suspense>
