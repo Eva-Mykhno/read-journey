@@ -50,15 +50,16 @@ export const addUserBook = createAsyncThunk(
   }
 );
 
-export const fetchUserLibrary = createAsyncThunk(
-  "books/fetchUserLibrary",
-  async (_, thunkAPI) => {
+export const fetchUserBooks = createAsyncThunk(
+  "books/fetchUserBooks",
+  async (status, thunkAPI) => {
     try {
-      const { data } = await api.get("/books/own");
+      const queryParam = status ? `?status=${status}` : "";
+      const { data } = await api.get(`/books/own${queryParam}`);
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(
-        error.response?.data || "Fetching user library failed"
+        error.response?.data || "Failed to fetch user's books"
       );
     }
   }
@@ -108,21 +109,6 @@ export const finishReadingBook = createAsyncThunk(
     } catch (error) {
       return thunkAPI.rejectWithValue(
         error.response?.data || "Failed to finish reading"
-      );
-    }
-  }
-);
-
-export const fetchUserBooks = createAsyncThunk(
-  "books/fetchUserBooks",
-  async (status, thunkAPI) => {
-    try {
-      const { data } = await api.get(`/books/own?status=${status}`);
-
-      return data;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(
-        error.response?.data || "Failed to fetch user's books"
       );
     }
   }

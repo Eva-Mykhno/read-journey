@@ -1,9 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import s from "./BookCard.module.css";
-import {
-  addBookToLibrary,
-  fetchUserLibrary,
-} from "../../redux/books/operations";
+import { addBookToLibrary, fetchUserBooks } from "../../redux/books/operations";
 import { selectUserLibraryBooks } from "../../redux/books/selectors";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -23,7 +20,7 @@ const BookCard = ({ book, closeModal }) => {
   const userLibraryBooks = useSelector(selectUserLibraryBooks);
 
   const handleAddToLibrary = async (bookId) => {
-    await dispatch(fetchUserLibrary());
+    await dispatch(fetchUserBooks());
     const bookExists = userLibraryBooks.some((b) => b.title === book.title);
 
     if (bookExists) {

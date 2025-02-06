@@ -58,8 +58,6 @@ const AddBook = () => {
     try {
       const resultAction = await dispatch(addUserBook(values)).unwrap();
 
-      console.log("Добавленная книга (из redux-thunk):", resultAction);
-
       if (resultAction) {
         setIsModalOpen(true);
         actions.resetForm();

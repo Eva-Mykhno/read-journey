@@ -2,12 +2,11 @@ import { createSlice } from "@reduxjs/toolkit";
 import {
   fetchRecommendedBooks,
   addBookToLibrary,
-  fetchUserLibrary,
+  fetchUserBooks,
   removeBook,
   addUserBook,
   startReadingBook,
   finishReadingBook,
-  fetchUserBooks,
 } from "./operations";
 
 const initialState = {
@@ -22,7 +21,7 @@ const initialState = {
     title: "",
     author: "",
   },
-  status: "",
+  status: "unread",
 };
 
 const booksSlice = createSlice({
@@ -39,7 +38,10 @@ const booksSlice = createSlice({
       state.filters = action.payload;
     },
     setStatus: (state, action) => {
-      state.status = action.payload;
+      const validStatuses = ["", "unread", "in-progress", "done"];
+      if (validStatuses.includes(action.payload)) {
+        state.status = action.payload;
+      }
     },
   },
   extraReducers: (builder) => {
@@ -81,15 +83,15 @@ const booksSlice = createSlice({
         state.isLoading = false;
         state.error = action.payload;
       })
-      .addCase(fetchUserLibrary.pending, (state) => {
+      .addCase(fetchUserBooks.pending, (state) => {
         state.isLoading = true;
         state.error = null;
       })
-      .addCase(fetchUserLibrary.fulfilled, (state, action) => {
+      .addCase(fetchUserBooks.fulfilled, (state, action) => {
         state.userLibraryBooks = action.payload;
         state.isLoading = false;
       })
-      .addCase(fetchUserLibrary.rejected, (state, action) => {
+      .addCase(fetchUserBooks.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload;
       })
@@ -160,18 +162,6 @@ const booksSlice = createSlice({
         state.isLoading = false;
       })
       .addCase(finishReadingBook.rejected, (state, action) => {
-        state.isLoading = false;
-        state.error = action.payload;
-      })
-      .addCase(fetchUserBooks.pending, (state) => {
-        state.isLoading = true;
-        state.error = null;
-      })
-      .addCase(fetchUserBooks.fulfilled, (state, action) => {
-        state.userLibraryBooks = action.payload;
-        state.isLoading = false;
-      })
-      .addCase(fetchUserBooks.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload;
       });

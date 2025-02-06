@@ -63,6 +63,7 @@ const AddReading = ({ bookId }) => {
               placeholder="0"
               className={s.input}
               disabled={isSubmitting}
+              onFocus={(e) => e.target.value === "0" && (e.target.value = "")}
             />
             <ErrorMessage name="page" component="span" className={s.error} />
           </div>

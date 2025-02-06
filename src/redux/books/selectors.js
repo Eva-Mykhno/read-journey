@@ -24,9 +24,5 @@ export const selectCurrentPageOfBookById = (state, bookId) => {
   const book = state.books.userLibraryBooks.find((book) => book._id === bookId);
   return book ? book.progress[book.progress.length - 1]?.finishPage : 1;
 };
-export const selectFilteredUserLibraryBooks = (state) => {
-  const { userLibraryBooks, status } = state.books;
-  return userLibraryBooks.filter((book) => {
-    return status ? book.status === status : true;
-  });
-};
+
+export const selectStatus = (state) => state.books.status;
