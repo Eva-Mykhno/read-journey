@@ -1,7 +1,7 @@
 import s from "./Dashboard.module.css";
 
 const Dashboard = ({ children }) => {
-  return <section className={s.dashboard}>{children}</section>;
+  return <div className={s.dashboard}>{children}</div>;
 };
 
 export default Dashboard;

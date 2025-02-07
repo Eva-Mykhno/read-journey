@@ -8,6 +8,8 @@ import {
 import s from "./AddReading.module.css";
 import { useEffect, useState } from "react";
 import { selectActiveProgressByBookId } from "../../redux/books/selectors";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const validationSchema = Yup.object().shape({
   page: Yup.number()
@@ -16,6 +18,16 @@ const validationSchema = Yup.object().shape({
     .positive("Must be greater than zero")
     .required("This field is required"),
 });
+
+const toastConfig = {
+  position: "top-center",
+  autoClose: 5000,
+  hideProgressBar: false,
+  closeOnClick: true,
+  pauseOnHover: true,
+  draggable: true,
+  theme: "dark",
+};
 
 const AddReading = ({ bookId }) => {
   const dispatch = useDispatch();
@@ -31,13 +43,41 @@ const AddReading = ({ bookId }) => {
   const buttonText = active ? "To stop" : "To start";
   const titleText = active ? "Stop page" : "Start page";
 
+  // const handleSubmit = async (values, { setSubmitting }) => {
+  //   if (active) {
+  //     await dispatch(finishReadingBook({ bookId, page: values.page }));
+  //     toast.success("Book reading has been successfully stopped", toastConfig);
+  //   } else {
+  //     await dispatch(startReadingBook({ bookId, page: values.page }));
+  //     toast.success("Book reading has been successfully started", toastConfig);
+  //   }
+  //   setSubmitting(false);
+  // };
+
   const handleSubmit = async (values, { setSubmitting }) => {
-    if (active) {
-      await dispatch(finishReadingBook({ bookId, page: values.page }));
-    } else {
-      await dispatch(startReadingBook({ bookId, page: values.page }));
+    try {
+      if (active) {
+        await dispatch(
+          finishReadingBook({ bookId, page: values.page })
+        ).unwrap();
+        toast.success(
+          "Book reading has been successfully stopped",
+          toastConfig
+        );
+      } else {
+        await dispatch(
+          startReadingBook({ bookId, page: values.page })
+        ).unwrap();
+        toast.success(
+          "Book reading has been successfully started",
+          toastConfig
+        );
+      }
+    } catch (error) {
+      toast.error(error || "Something went wrong", toastConfig);
+    } finally {
+      setSubmitting(false);
     }
-    setSubmitting(false);
   };
 
   useEffect(() => {

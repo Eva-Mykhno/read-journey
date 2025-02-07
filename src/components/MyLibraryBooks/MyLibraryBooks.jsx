@@ -59,7 +59,7 @@ const MyLibraryBooks = () => {
   return (
     <section className={s.library}>
       <Formik
-        initialValues={{ status: statusFilter }}
+        initialValues={{ status: statusFilter || "" }}
         onSubmit={(values) => handleStatusChange(values.status)}>
         {({ setFieldValue }) => (
           <Form className={s.form}>

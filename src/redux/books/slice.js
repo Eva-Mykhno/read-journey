@@ -7,6 +7,7 @@ import {
   addUserBook,
   startReadingBook,
   finishReadingBook,
+  fetchInfoAboutBook,
 } from "./operations";
 
 const initialState = {
@@ -21,7 +22,7 @@ const initialState = {
     title: "",
     author: "",
   },
-  status: "unread",
+  status: "",
 };
 
 const booksSlice = createSlice({
@@ -162,6 +163,26 @@ const booksSlice = createSlice({
         state.isLoading = false;
       })
       .addCase(finishReadingBook.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload;
+      })
+      .addCase(fetchInfoAboutBook.pending, (state) => {
+        state.isLoading = true;
+        state.error = null;
+      })
+      .addCase(fetchInfoAboutBook.fulfilled, (state, action) => {
+        const updatedBook = action.payload;
+        const index = state.userLibraryBooks.findIndex(
+          (book) => book._id === updatedBook._id
+        );
+
+        if (index !== -1) {
+          state.userLibraryBooks[index] = updatedBook;
+        }
+
+        state.isLoading = false;
+      })
+      .addCase(fetchInfoAboutBook.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload;
       });

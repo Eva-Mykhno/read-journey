@@ -113,3 +113,20 @@ export const finishReadingBook = createAsyncThunk(
     }
   }
 );
+
+export const fetchInfoAboutBook = createAsyncThunk(
+  "books/id",
+  async ({ bookId }, thunkAPI) => {
+    try {
+      const { data } = await api.get(`/books/${bookId}`);
+
+      console.log("Book data:", data); // Логирование данных
+
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(
+        error.response?.data || "Failed to fetch info about the book"
+      );
+    }
+  }
+);

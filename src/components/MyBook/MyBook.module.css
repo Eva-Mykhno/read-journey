@@ -75,7 +75,6 @@
 
   .title {
     margin-bottom: 32px;
-
     font-size: 28px;
   }
 
@@ -130,5 +129,9 @@
   .noImage {
     width: 224px;
     height: 340px;
+  }
+
+  .bookTitle {
+    width: 400px;
   }
 }

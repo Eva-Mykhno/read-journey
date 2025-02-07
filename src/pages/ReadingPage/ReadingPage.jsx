@@ -13,7 +13,7 @@ const ReadingPage = () => {
     <main className={s.page}>
       <Dashboard>
         <AddReading bookId={bookId} />
-        <Details />
+        <Details bookId={bookId} />
       </Dashboard>
       <MyBook bookId={bookId} />
     </main>

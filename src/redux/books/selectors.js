@@ -26,3 +26,8 @@ export const selectCurrentPageOfBookById = (state, bookId) => {
 };
 
 export const selectStatus = (state) => state.books.status;
+
+export const selectStatusByBookId = (state, bookId) => {
+  const book = state.books.userLibraryBooks.find((book) => book._id === bookId);
+  return book ? book.status : "unread";
+};

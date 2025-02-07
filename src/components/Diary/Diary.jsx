@@ -1,7 +1,7 @@
 import s from "./Diary.module.css";
 
 const Diary = () => {
-  return <div className={s.diary}></div>;
+  return <p className={s.diary}>Diary</p>;
 };
 
 export default Diary;
