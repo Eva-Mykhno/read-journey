@@ -87,7 +87,7 @@ const Details = ({ bookId }) => {
             </div>
           </div>
 
-          {selectedComponent === "diary" && <Diary />}
+          {selectedComponent === "diary" && <Diary bookId={bookId} />}
           {selectedComponent === "statistics" && <Statistics />}
           {status === "done" && (
             <BookRead isOpen={isModalOpen} onClose={closeModal} />

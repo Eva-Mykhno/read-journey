@@ -119,9 +119,6 @@ export const fetchInfoAboutBook = createAsyncThunk(
   async ({ bookId }, thunkAPI) => {
     try {
       const { data } = await api.get(`/books/${bookId}`);
-
-      console.log("Book data:", data); // Логирование данных
-
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(
