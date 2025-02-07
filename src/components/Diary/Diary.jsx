@@ -1,4 +1,5 @@
 import { useSelector } from "react-redux";
+import clsx from "clsx";
 import s from "./Diary.module.css";
 
 const sprite = "/sprite.svg";
@@ -12,66 +13,77 @@ const useReadingProgress = (bookId) => {
 
   const { progress, totalPages } = book;
 
-  const formattedProgress = progress.map((session) => {
-    const readPages = session.finishPage - session.startPage;
-    const percentRead = ((session.finishPage / totalPages) * 100).toFixed(2);
-    const readingTime =
-      new Date(session.finishReading) - new Date(session.startReading);
-    const readingTimeInMinutes = Math.floor(readingTime / 60000);
-    const readingTimeInHours = readingTime / (1000 * 60 * 60);
-    const speed = readingTimeInHours
-      ? (readPages / readingTimeInHours).toFixed(2)
-      : 0;
+  return {
+    progress: progress.map((session) => {
+      const readPages = session.finishPage - session.startPage;
+      const percentRead = ((session.finishPage / totalPages) * 100).toFixed(2);
+      const readingTime =
+        new Date(session.finishReading) - new Date(session.startReading);
+      const readingTimeInMinutes = Math.floor(readingTime / 60000);
+      const readingTimeInHours = readingTime / (1000 * 60 * 60);
+      const speed = readingTimeInHours
+        ? Math.round(readPages / readingTimeInHours)
+        : 0;
 
-    return {
-      id: session.startReading,
-      date: new Date(session.startReading).toLocaleDateString(),
-      readPages,
-      percentRead,
-      readingTimeInMinutes,
-      speed,
-    };
-  });
-
-  return { progress: formattedProgress };
+      return {
+        id: session.startReading,
+        date: new Date(session.startReading).toLocaleDateString(),
+        readPages,
+        percentRead,
+        readingTimeInMinutes,
+        speed,
+      };
+    }),
+  };
 };
 
 const Diary = ({ bookId }) => {
   const { progress } = useReadingProgress(bookId);
+  const lastSessionId =
+    progress.length > 0 ? progress[progress.length - 1].id : null;
 
   return (
     <ul className={s.list}>
       {progress.map(
-        ({ id, date, readPages, percentRead, readingTimeInMinutes, speed }) => (
-          <li key={id} className={s.item}>
-            <div className={s.wrapFirst}>
-              <div className={s.wrapDate}>
-                <div className={s.block}></div>
-                <p className={s.date}> {date}</p>
-              </div>
-              <p className={s.pages}>{readPages} pages</p>
-            </div>
+        ({ id, date, readPages, percentRead, readingTimeInMinutes, speed }) => {
+          const isLastSession = id === lastSessionId;
 
-            <div className={s.wrapSecond}>
-              <div className={s.wrapPercent}>
-                <p className={s.percent}> {percentRead}%</p>
-                <p className={s.minutes}> {readingTimeInMinutes} minutes</p>
-              </div>
-
-              <div className={s.wrapSpeed}>
-                <div className={s.icons}>
-                  <svg className={s.hill}>
-                    <use href={`${sprite}#icon-block-hill`} />
-                  </svg>
-                  <svg className={s.trash}>
-                    <use href={`${sprite}#icon-trash`} />
-                  </svg>
+          return (
+            <li key={id} className={s.item}>
+              <div className={s.wrapFirst}>
+                <div className={s.wrapDate}>
+                  <div
+                    className={clsx(s.block, {
+                      [s.lastBlock]: isLastSession,
+                    })}></div>
+                  <p className={clsx(s.date, { [s.lastDate]: isLastSession })}>
+                    {date}
+                  </p>
                 </div>
-                <p className={s.speed}>{speed} pages per hour</p>
+                <p className={s.pages}>{readPages} pages</p>
               </div>
-            </div>
-          </li>
-        )
+
+              <div className={s.wrapSecond}>
+                <div className={s.wrapPercent}>
+                  <p className={s.percent}>{percentRead}%</p>
+                  <p className={s.minutes}>{readingTimeInMinutes} minutes</p>
+                </div>
+
+                <div className={s.wrapSpeed}>
+                  <div className={s.icons}>
+                    <svg className={s.hill}>
+                      <use href={`${sprite}#icon-block-hill`} />
+                    </svg>
+                    <svg className={s.trash}>
+                      <use href={`${sprite}#icon-trash`} />
+                    </svg>
+                  </div>
+                  <p className={s.speed}>{speed} pages per hour</p>
+                </div>
+              </div>
+            </li>
+          );
+        }
       )}
     </ul>
   );
