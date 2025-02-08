@@ -8,6 +8,7 @@ import {
   startReadingBook,
   finishReadingBook,
   fetchInfoAboutBook,
+  deleteReadingSession,
 } from "./operations";
 
 const initialState = {
@@ -183,6 +184,25 @@ const booksSlice = createSlice({
         state.isLoading = false;
       })
       .addCase(fetchInfoAboutBook.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload;
+      })
+      .addCase(deleteReadingSession.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(deleteReadingSession.fulfilled, (state, action) => {
+        const { bookId, readingId } = action.payload;
+        const book = state.userLibraryBooks.find((book) => book._id === bookId);
+
+        if (book) {
+          book.progress = book.progress.filter(
+            (session) => session._id !== readingId
+          );
+        }
+
+        state.isLoading = false;
+      })
+      .addCase(deleteReadingSession.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload;
       });

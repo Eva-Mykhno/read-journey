@@ -43,18 +43,7 @@ const AddReading = ({ bookId }) => {
   const buttonText = active ? "To stop" : "To start";
   const titleText = active ? "Stop page" : "Start page";
 
-  // const handleSubmit = async (values, { setSubmitting }) => {
-  //   if (active) {
-  //     await dispatch(finishReadingBook({ bookId, page: values.page }));
-  //     toast.success("Book reading has been successfully stopped", toastConfig);
-  //   } else {
-  //     await dispatch(startReadingBook({ bookId, page: values.page }));
-  //     toast.success("Book reading has been successfully started", toastConfig);
-  //   }
-  //   setSubmitting(false);
-  // };
-
-  const handleSubmit = async (values, { setSubmitting }) => {
+  const handleSubmit = async (values, { setSubmitting, resetForm }) => {
     try {
       if (active) {
         await dispatch(
@@ -73,6 +62,7 @@ const AddReading = ({ bookId }) => {
           toastConfig
         );
       }
+      resetForm();
     } catch (error) {
       toast.error(error || "Something went wrong", toastConfig);
     } finally {

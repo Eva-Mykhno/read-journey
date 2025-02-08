@@ -55,7 +55,7 @@ export const fetchUserBooks = createAsyncThunk(
   async (status, thunkAPI) => {
     try {
       const queryParam = status ? `?status=${status}` : "";
-      const { data } = await api.get("/books/own", { queryParam });
+      const { data } = await api.get(`/books/own${queryParam}`);
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(
@@ -123,6 +123,25 @@ export const fetchInfoAboutBook = createAsyncThunk(
     } catch (error) {
       return thunkAPI.rejectWithValue(
         error.response?.data || "Failed to fetch info about the book"
+      );
+    }
+  }
+);
+export const deleteReadingSession = createAsyncThunk(
+  "books/deleteReadingSession",
+  async ({ bookId, readingId }, thunkAPI) => {
+    try {
+      console.log("Deleting reading session with:", { bookId, readingId });
+
+      await api.delete(`/books/reading`, {
+        params: { bookId, readingId },
+      });
+      return { bookId, readingId };
+    } catch (error) {
+      console.error("Error deleting reading session:", error);
+
+      return thunkAPI.rejectWithValue(
+        error.response?.data || "Failed to delete reading session"
       );
     }
   }

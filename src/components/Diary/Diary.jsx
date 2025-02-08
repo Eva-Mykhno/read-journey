@@ -1,6 +1,7 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import clsx from "clsx";
 import s from "./Diary.module.css";
+import { deleteReadingSession } from "../../redux/books/operations";
 
 const sprite = "/sprite.svg";
 
@@ -33,6 +34,7 @@ const calculateSessionData = (
 };
 
 const Diary = ({ bookId }) => {
+  const dispatch = useDispatch();
   const book = useSelector((state) =>
     state.books.userLibraryBooks.find((book) => book._id === bookId)
   );
@@ -40,6 +42,10 @@ const Diary = ({ bookId }) => {
   if (!book) return null;
 
   const { progress, totalPages } = book;
+
+  const handleDeleteSession = (readingId) => {
+    dispatch(deleteReadingSession({ bookId, readingId }));
+  };
 
   const groupedSessions = progress.reduce((acc, session) => {
     if (session.finishReading) {
@@ -108,7 +114,13 @@ const Diary = ({ bookId }) => {
 
               <ul className={s.listSession}>
                 {sessions.map(
-                  ({ startReading, finishPage, startPage, finishReading }) => {
+                  ({
+                    startReading,
+                    finishPage,
+                    startPage,
+                    finishReading,
+                    _id,
+                  }) => {
                     const { percentRead, readingTimeInMinutes, speed } =
                       calculateSessionData(
                         startReading,
@@ -131,7 +143,9 @@ const Diary = ({ bookId }) => {
                             <svg className={s.hill}>
                               <use href={`${sprite}#icon-block-hill`} />
                             </svg>
-                            <svg className={s.trash}>
+                            <svg
+                              className={s.trash}
+                              onClick={() => handleDeleteSession(_id)}>
                               <use href={`${sprite}#icon-trash`} />
                             </svg>
                           </div>
