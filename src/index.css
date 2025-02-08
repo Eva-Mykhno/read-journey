@@ -41,6 +41,11 @@
   --library-recommend: #e3e3e3;
 }
 
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
 body {
   font-family: "Gilroy", "Open Sans", sans-serif;
   margin: 0;

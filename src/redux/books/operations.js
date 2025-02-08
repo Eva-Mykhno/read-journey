@@ -55,7 +55,7 @@ export const fetchUserBooks = createAsyncThunk(
   async (status, thunkAPI) => {
     try {
       const queryParam = status ? `?status=${status}` : "";
-      const { data } = await api.get(`/books/own${queryParam}`);
+      const { data } = await api.get("/books/own", { queryParam });
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(
