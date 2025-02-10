@@ -2,6 +2,7 @@ import { useSelector } from "react-redux";
 import {
   selectReadingBook,
   selectActiveProgressByBookId,
+  selectTimeLeftToReadByBookId,
 } from "../../redux/books/selectors";
 import s from "./MyBook.module.css";
 
@@ -12,6 +13,9 @@ const MyBook = ({ bookId }) => {
   const activeProgress = useSelector((state) =>
     selectActiveProgressByBookId(state, bookId)
   );
+  const timeLeft = useSelector((state) =>
+    selectTimeLeftToReadByBookId(state, bookId)
+  );
 
   if (!book) return null;
 
@@ -19,7 +23,14 @@ const MyBook = ({ bookId }) => {
 
   return (
     <section className={s.section}>
-      <h2 className={s.title}>My reading</h2>
+      <div className={s.wrap}>
+        <h2 className={s.title}>My reading</h2>
+        {timeLeft && (
+          <p className={s.timeLeft}>
+            {timeLeft.hours} hours and {timeLeft.minutes} minutes left
+          </p>
+        )}
+      </div>
 
       <div className={s.book}>
         {book.imageUrl ? (

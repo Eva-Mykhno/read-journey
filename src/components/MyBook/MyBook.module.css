@@ -7,12 +7,21 @@
   background-color: var(--dark-gray);
 }
 
+.wrap {
+  display: flex;
+  justify-content: space-between;
+}
+
 .title {
   margin-bottom: 40px;
   color: var(--main);
   font-size: 20px;
   font-weight: 700;
   letter-spacing: -0.02em;
+}
+
+.timeLeft {
+  display: none;
 }
 
 .book {
@@ -119,6 +128,14 @@
 
   .title {
     margin-bottom: 44px;
+  }
+
+  .timeLeft {
+    display: block;
+    color: var(--light-gray);
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: -0.02em;
   }
 
   .image {
