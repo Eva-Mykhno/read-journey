@@ -4,6 +4,7 @@ import { NavLink } from "react-router-dom";
 import { fetchRecommendedBooks } from "../../redux/books/operations";
 import { selectBooks, selectIsLoading } from "../../redux/books/selectors";
 import Loader from "../Loader/Loader";
+import LazyImage from "../LazyImage/LazyImage";
 import s from "./RecommendedForLibrary.module.css";
 
 const sprite = "/sprite.svg";
@@ -42,7 +43,11 @@ const RecommendedForLibrary = () => {
         <ul className={s.list}>
           {randomBooks.map((book) => (
             <li key={book._id} className={s.book}>
-              <img src={book.imageUrl} alt={book.title} className={s.img} />
+              <LazyImage
+                src={book.imageUrl}
+                alt={book.title}
+                className={s.img}
+              />
               <h3 className={s.bookTitle}>{book.title}</h3>
               <p className={s.author}>{book.author}</p>
             </li>

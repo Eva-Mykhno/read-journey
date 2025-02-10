@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { addBookToLibrary, fetchUserBooks } from "../../redux/books/operations";
 import { selectUserLibraryBooks } from "../../redux/books/selectors";
+import LazyImage from "../LazyImage/LazyImage";
 import s from "./BookCard.module.css";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -37,7 +38,7 @@ const BookCard = ({ book, closeModal }) => {
 
   return (
     <div className={s.book}>
-      <img src={book.imageUrl} alt={book.title} className={s.img} />
+      <LazyImage src={book.imageUrl} alt={book.title} className={s.img} />
       <h3 className={s.title}>{book.title}</h3>
       <p className={s.author}>{book.author}</p>
       <p className={s.pages}>{book.totalPages} pages</p>

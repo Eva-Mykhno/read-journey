@@ -1,4 +1,5 @@
 import { NavLink } from "react-router-dom";
+import LazyImage from "../LazyImage/LazyImage";
 import s from "./BookCardFromLibrary.module.css";
 
 const BookCardFromLibrary = ({ book, onClose }) => {
@@ -7,7 +8,7 @@ const BookCardFromLibrary = ({ book, onClose }) => {
   return (
     <div className={s.book}>
       {book.imageUrl ? (
-        <img src={book.imageUrl} alt={book.title} className={s.image} />
+        <LazyImage src={book.imageUrl} alt={book.title} className={s.img} />
       ) : (
         <div className={s.noImage}>
           <picture>

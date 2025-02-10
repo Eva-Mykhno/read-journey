@@ -4,6 +4,7 @@ import {
   selectActiveProgressByBookId,
   selectTimeLeftToReadByBookId,
 } from "../../redux/books/selectors";
+import LazyImage from "../LazyImage/LazyImage";
 import s from "./MyBook.module.css";
 
 const sprite = "/sprite.svg";
@@ -34,7 +35,7 @@ const MyBook = ({ bookId }) => {
 
       <div className={s.book}>
         {book.imageUrl ? (
-          <img src={book.imageUrl} alt={book.title} className={s.image} />
+          <LazyImage src={book.imageUrl} alt={book.title} className={s.image} />
         ) : (
           <div className={s.noImage}>
             <picture>

@@ -13,6 +13,7 @@ import Modal from "../Modal/Modal";
 import { setCurrentPage, setBooksPerPage } from "../../redux/books/slice";
 import Loader from "../Loader/Loader";
 import BookCard from "../BookCard/BookCard";
+import LazyImage from "../LazyImage/LazyImage";
 import s from "./RecommendedBooks.module.css";
 
 const sprite = "/sprite.svg";
@@ -99,7 +100,7 @@ const RecommendedBooks = () => {
               key={book._id}
               className={s.book}
               onClick={() => openModal(book)}>
-              <img
+              <LazyImage
                 src={book.imageUrl}
                 alt={book.title}
                 className={s.bookImage}

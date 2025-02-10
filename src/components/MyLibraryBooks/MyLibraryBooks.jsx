@@ -12,6 +12,8 @@ import Loader from "../Loader/Loader";
 import Modal from "../Modal/Modal";
 import BookCardFromLibrary from "../BookCardFromLibrary/BookCardFromLibrary";
 import { setStatus } from "../../redux/books/slice";
+
+import LazyImage from "../LazyImage/LazyImage";
 import s from "./MyLibraryBooks.module.css";
 
 const sprite = "/sprite.svg";
@@ -99,7 +101,7 @@ const MyLibraryBooks = () => {
             <li key={book._id} className={s.item}>
               <div onClick={() => openModal(book)}>
                 {book.imageUrl ? (
-                  <img
+                  <LazyImage
                     src={book.imageUrl}
                     alt={book.title}
                     className={s.image}
