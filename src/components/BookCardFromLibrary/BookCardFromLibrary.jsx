@@ -8,7 +8,7 @@ const BookCardFromLibrary = ({ book, onClose }) => {
   return (
     <div className={s.book}>
       {book.imageUrl ? (
-        <LazyImage src={book.imageUrl} alt={book.title} className={s.img} />
+        <LazyImage src={book.imageUrl} alt={book.title} className={s.image} />
       ) : (
         <div className={s.noImage}>
           <picture>
