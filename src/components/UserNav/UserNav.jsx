@@ -1,7 +1,7 @@
 import clsx from "clsx";
-import s from "./UserNav.module.css";
 import { NavLink } from "react-router-dom";
 import Logout from "../Logout/Logout";
+import s from "./UserNav.module.css";
 
 const UserNav = () => {
   const buildLinkClassName = ({ isActive }) => {

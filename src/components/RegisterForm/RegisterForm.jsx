@@ -1,12 +1,12 @@
 import * as Yup from "yup";
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import s from "./RegisterForm.module.css";
-import { useDispatch, useSelector } from "react-redux";
-import { register } from "../../redux/auth/operations";
 import { useEffect, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-import { selectIsLoggedIn } from "../../redux/auth/selectors";
+import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
+import { register } from "../../redux/auth/operations";
+import { selectIsLoggedIn } from "../../redux/auth/selectors";
+import s from "./RegisterForm.module.css";
 import "react-toastify/dist/ReactToastify.css";
 
 const sprite = "/sprite.svg";

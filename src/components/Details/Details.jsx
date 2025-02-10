@@ -1,11 +1,12 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
+import clsx from "clsx";
 import { fetchInfoAboutBook } from "../../redux/books/operations";
 import Diary from "../Diary/Diary";
 import Statistics from "../Statistics/Statistics";
 import BookRead from "../BookRead/BookRead";
+import Text from "../Text/Text";
 import s from "./Details.module.css";
-import clsx from "clsx";
 
 const sprite = "/sprite.svg";
 
@@ -88,7 +89,12 @@ const Details = ({ bookId }) => {
           </div>
 
           {selectedComponent === "diary" && <Diary bookId={bookId} />}
-          {selectedComponent === "statistics" && <Statistics />}
+          {selectedComponent === "statistics" && (
+            <>
+              <Text />
+              <Statistics bookId={bookId} />
+            </>
+          )}
           {status === "done" && (
             <BookRead isOpen={isModalOpen} onClose={closeModal} />
           )}

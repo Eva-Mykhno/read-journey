@@ -1,9 +1,9 @@
+import { useState } from "react";
 import Logout from "../Logout/Logout";
 import UserBar from "../UserBar/UserBar";
 import UserNav from "../UserNav/UserNav";
 import ModalNav from "../ModalNav/ModalNav";
 import s from "./Header.module.css";
-import { useState } from "react";
 
 const sprite = "/sprite.svg";
 

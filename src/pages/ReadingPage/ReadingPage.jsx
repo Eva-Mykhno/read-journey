@@ -1,9 +1,9 @@
-import s from "./ReadingPage.module.css";
+import { useLocation } from "react-router-dom";
 import Dashboard from "../../components/Dashboard/Dashboard";
 import MyBook from "../../components/MyBook/MyBook";
 import AddReading from "../../components/AddReading/AddReading";
 import Details from "../../components/Details/Details";
-import { useLocation } from "react-router-dom";
+import s from "./ReadingPage.module.css";
 
 const ReadingPage = () => {
   const searchParams = new URLSearchParams(useLocation().search);

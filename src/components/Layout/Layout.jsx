@@ -1,8 +1,8 @@
 import { Outlet } from "react-router-dom";
-import Header from "../Header/Header";
-import { useDispatch, useSelector } from "react-redux";
-import { refresh } from "../../redux/auth/operations";
 import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import Header from "../Header/Header";
+import { refresh } from "../../redux/auth/operations";
 import {
   selectIsRefreshing,
   selectIsLoggedIn,

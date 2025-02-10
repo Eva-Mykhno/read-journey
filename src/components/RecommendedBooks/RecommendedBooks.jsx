@@ -10,10 +10,10 @@ import {
   selectFilters,
 } from "../../redux/books/selectors";
 import Modal from "../Modal/Modal";
-import s from "./RecommendedBooks.module.css";
 import { setCurrentPage, setBooksPerPage } from "../../redux/books/slice";
 import Loader from "../Loader/Loader";
 import BookCard from "../BookCard/BookCard";
+import s from "./RecommendedBooks.module.css";
 
 const sprite = "/sprite.svg";
 

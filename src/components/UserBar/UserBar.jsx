@@ -1,8 +1,8 @@
 import { useDispatch, useSelector } from "react-redux";
-import s from "./UserBar.module.css";
-import { selectUserName } from "../../redux/auth/selectors";
 import { useEffect } from "react";
+import { selectUserName } from "../../redux/auth/selectors";
 import { fetchUser } from "../../redux/auth/operations";
+import s from "./UserBar.module.css";
 
 const UserBar = () => {
   const name = useSelector(selectUserName);

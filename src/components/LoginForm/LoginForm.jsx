@@ -1,11 +1,11 @@
 import * as Yup from "yup";
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import s from "./LoginForm.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import { login } from "../../redux/auth/operations";
 import { useEffect, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
+import { login } from "../../redux/auth/operations";
 import { selectIsLoggedIn } from "../../redux/auth/selectors";
+import s from "./LoginForm.module.css";
 
 const sprite = "/sprite.svg";
 

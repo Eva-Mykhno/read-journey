@@ -1,8 +1,8 @@
 import { useDispatch, useSelector } from "react-redux";
-import s from "./BookCard.module.css";
+import { toast } from "react-toastify";
 import { addBookToLibrary, fetchUserBooks } from "../../redux/books/operations";
 import { selectUserLibraryBooks } from "../../redux/books/selectors";
-import { toast } from "react-toastify";
+import s from "./BookCard.module.css";
 import "react-toastify/dist/ReactToastify.css";
 
 const toastConfig = {

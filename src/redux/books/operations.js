@@ -131,16 +131,12 @@ export const deleteReadingSession = createAsyncThunk(
   "books/deleteReadingSession",
   async ({ bookId, readingId }, thunkAPI) => {
     try {
-      console.log("Deleting reading session with:", { bookId, readingId });
-
-      await api.delete(`/books/reading`, {
+       await api.delete(`/books/reading`, {
         params: { bookId, readingId },
       });
       return { bookId, readingId };
     } catch (error) {
-      console.error("Error deleting reading session:", error);
-
-      return thunkAPI.rejectWithValue(
+        return thunkAPI.rejectWithValue(
         error.response?.data || "Failed to delete reading session"
       );
     }

@@ -1,8 +1,8 @@
 import { useDispatch } from "react-redux";
-import { logout } from "../../redux/auth/operations";
-import s from "./Logout.module.css";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { logout } from "../../redux/auth/operations";
+import s from "./Logout.module.css";
 import "react-toastify/dist/ReactToastify.css";
 
 const Logout = () => {

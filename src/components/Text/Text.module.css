@@ -1,0 +1,16 @@
+.text {
+  display: none;
+}
+
+@media screen and (min-width: 1280px) {
+  .text {
+    display: block;
+    padding-bottom: 20px;
+    width: 293px;
+    color: var(--light-gray);
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.28;
+    letter-spacing: -0.02em;
+  }
+}

@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import clsx from "clsx";
-import s from "./Diary.module.css";
 import { deleteReadingSession } from "../../redux/books/operations";
+import s from "./Diary.module.css";
 
 const sprite = "/sprite.svg";
 

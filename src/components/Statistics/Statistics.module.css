@@ -1,0 +1,96 @@
+.statistics {
+  max-width: 295px;
+  padding: 20px;
+  width: 100%;
+  height: 211px;
+  border-radius: 12px;
+  background-color: var(--gray);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 21px;
+}
+
+.text {
+  display: none;
+}
+
+.wrapProgress {
+  width: 116px;
+  height: 116px;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.info {
+  display: flex;
+  gap: 15px;
+}
+
+.color {
+  width: 14px;
+  height: 14px;
+  border-radius: 4px;
+  background-color: var(--green);
+}
+
+.wrapPercent {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.percent {
+  color: var(--main);
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+}
+
+.pages {
+  color: var(--light-gray);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+}
+
+@media screen and (min-width: 768px) {
+  .statistics {
+    width: 321px;
+    max-width: 321px;
+    height: 252px;
+    padding: 28px;
+    gap: 16px;
+  }
+
+  .wrapProgress {
+    width: 138px;
+    height: 138px;
+  }
+
+  .wrapPercent {
+    gap: 8px;
+  }
+
+  .percent {
+    font-size: 20px;
+  }
+
+  .pages {
+    font-size: 12px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .statistics {
+    width: 313px;
+    max-width: 313px;
+    height: 281px;
+    padding: 20px;
+  }
+
+  .wrapProgress {
+    width: 180px;
+    height: 180px;
+  }
+}
