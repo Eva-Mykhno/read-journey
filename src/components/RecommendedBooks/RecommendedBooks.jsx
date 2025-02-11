@@ -10,7 +10,11 @@ import {
   selectFilters,
 } from "../../redux/books/selectors";
 import Modal from "../Modal/Modal";
-import { setCurrentPage, setBooksPerPage } from "../../redux/books/slice";
+import {
+  setCurrentPage,
+  setBooksPerPage,
+  setFilters,
+} from "../../redux/books/slice";
 import Loader from "../Loader/Loader";
 import BookCard from "../BookCard/BookCard";
 import LazyImage from "../LazyImage/LazyImage";
@@ -29,6 +33,10 @@ const RecommendedBooks = () => {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedBook, setSelectedBook] = useState(null);
+
+  useEffect(() => {
+    dispatch(setFilters({ title: "", author: "" }));
+  }, [dispatch]);
 
   useEffect(() => {
     const updateBooksPerPage = () => {
