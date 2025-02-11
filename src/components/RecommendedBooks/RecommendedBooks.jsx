@@ -50,7 +50,6 @@ const RecommendedBooks = () => {
       }
 
       if (booksPerPage !== perPage) {
-        console.log(`Updating booksPerPage: ${booksPerPage}`);
         dispatch(setBooksPerPage(booksPerPage));
         dispatch(setCurrentPage(1));
       }
