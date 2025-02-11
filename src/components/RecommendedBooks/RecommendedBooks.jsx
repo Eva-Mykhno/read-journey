@@ -31,15 +31,30 @@ const RecommendedBooks = () => {
   const [selectedBook, setSelectedBook] = useState(null);
 
   useEffect(() => {
-    const width = window.innerWidth;
-    if (width < 768) {
-      dispatch(setBooksPerPage(2));
-    } else if (width < 1280) {
-      dispatch(setBooksPerPage(8));
-    } else {
-      dispatch(setBooksPerPage(10));
-    }
-  }, [dispatch]);
+    const updateBooksPerPage = () => {
+      const width = window.innerWidth;
+      let booksPerPage = 2;
+
+      if (width >= 1280) {
+        booksPerPage = 10;
+      } else if (width >= 768) {
+        booksPerPage = 8;
+      }
+
+      if (booksPerPage !== perPage) {
+        console.log(`Updating booksPerPage: ${booksPerPage}`);
+        dispatch(setBooksPerPage(booksPerPage));
+        dispatch(setCurrentPage(1));
+      }
+    };
+
+    updateBooksPerPage();
+    window.addEventListener("resize", updateBooksPerPage);
+
+    return () => {
+      window.removeEventListener("resize", updateBooksPerPage);
+    };
+  }, [dispatch, perPage]);
 
   useEffect(() => {
     dispatch(fetchRecommendedBooks({ page: currentPage, perPage, filters }));
@@ -73,19 +88,16 @@ const RecommendedBooks = () => {
         <h2 className={s.title}>Recommended</h2>
 
         <div className={s.narrows}>
-          <button className={s.narrow}>
-            <svg
-              className={`${s.icon} ${currentPage === 1 ? s.disabled : ""}`}
-              onClick={goToPrevPage}>
+          <button className={s.narrow} onClick={goToPrevPage}>
+            <svg className={`${s.icon} ${currentPage === 1 ? s.disabled : ""}`}>
               <use href={`${sprite}#icon-left`} />
             </svg>
           </button>
-          <button type="button" className={s.narrow}>
+          <button className={s.narrow} onClick={goToNextPage}>
             <svg
               className={`${s.icon} ${
                 currentPage === totalPages ? s.disabled : ""
-              }`}
-              onClick={goToNextPage}>
+              }`}>
               <use href={`${sprite}#icon-right`} />
             </svg>
           </button>
