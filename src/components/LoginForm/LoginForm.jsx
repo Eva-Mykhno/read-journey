@@ -146,7 +146,7 @@ const LoginForm = () => {
             <button type="submit" className={s.button}>
               Log In
             </button>
-            <NavLink to="/login" className={s.link}>
+            <NavLink to="/register" className={s.link}>
               Don&rsquo;t have an account?
             </NavLink>
           </div>

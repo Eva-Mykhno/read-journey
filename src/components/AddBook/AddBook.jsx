@@ -61,10 +61,6 @@ const AddBook = () => {
       if (resultAction) {
         setIsModalOpen(true);
         actions.resetForm();
-        toast.success(
-          "Your book has been successfully added to your library",
-          toastConfig
-        );
       }
     } catch (error) {
       console.error("Error adding book:", error);
