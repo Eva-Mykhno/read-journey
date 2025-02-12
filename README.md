@@ -33,8 +33,11 @@ The library page displays a list of all the books the user wants to read. It is 
 
 ### Reading Page
 
-![Screenshot of my projects' statistics on the reading page](/public/statistics.jpg)
-![Screenshot of my projects' diary on the reading page](/public/diary.jpg)
+<div style="display: flex; gap: 10px;">
+  <img src="/public/statistics.jpg" alt="Screenshot of my project's statistics on the reading page" width="49%">
+  <img src="/public/diary.jpg" alt="Screenshot of my project's diary on the reading page" width="49%">
+</div>
+
 On the book reading page, the user sees a form where he needs to enter the page number of the start/stop reading. Also on this page, statistics (progress bar) or a diary containing information about all reading sessions are displayed.
 
 ## Technologies
