@@ -12,7 +12,7 @@ To create the Read Journey project, I used [this layout](https://www.figma.com/f
 
 This web application with adaptive layout improves the user's reading experience. A registered user can start reading one of the recommended books by adding it to their personal library. They can filter books by author or title to find something interesting. In addition, users can add their own books to the library by specifying the author, title, and number of pages. After selecting a book, the application will help track individual reading sessions and calculate the user's reading speed.
 
-### Website [Read Journey](https://learn-lingo-two.vercel.app/)
+### Website [Read Journey](https://read-journey-one.vercel.app/)
 
 ## Application pages:
 
