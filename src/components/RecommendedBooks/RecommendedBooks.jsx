@@ -18,8 +18,8 @@ import {
 import Loader from "../Loader/Loader";
 import BookCard from "../BookCard/BookCard";
 import LazyImage from "../LazyImage/LazyImage";
-import s from "./RecommendedBooks.module.css";
 import { selectIsRefreshing } from "../../redux/auth/selectors";
+import s from "./RecommendedBooks.module.css";
 
 const sprite = "/sprite.svg";
 
