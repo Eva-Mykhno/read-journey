@@ -12,8 +12,12 @@ const Logout = () => {
   const handleLogout = async () => {
     try {
       await dispatch(logout()).unwrap();
+      localStorage.removeItem("token");
+      localStorage.removeItem("user");
       navigate("/login");
     } catch (error) {
+      localStorage.removeItem("token");
+      localStorage.removeItem("user");
       toast.error(error || "Error logging out of account", {
         position: "top-center",
         autoClose: 5000,
