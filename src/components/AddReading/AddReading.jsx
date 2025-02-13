@@ -49,9 +49,8 @@ const AddReading = ({ bookId }) => {
 
   const handleSubmit = async (values, { setSubmitting, resetForm }) => {
     if (values.page > totalPages) {
-      const pagesLeft = totalPages - (activeProgress?.finishPage || 0);
       toast.error(
-        `Invalid page number. You have ${pagesLeft} pages left to read.`,
+        "Invalid page number. You have fewer pages left to read.",
         toastConfig
       );
       setSubmitting(false);
