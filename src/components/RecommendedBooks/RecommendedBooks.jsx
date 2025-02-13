@@ -19,6 +19,7 @@ import Loader from "../Loader/Loader";
 import BookCard from "../BookCard/BookCard";
 import LazyImage from "../LazyImage/LazyImage";
 import s from "./RecommendedBooks.module.css";
+import { selectIsRefreshing } from "../../redux/auth/selectors";
 
 const sprite = "/sprite.svg";
 
@@ -30,6 +31,7 @@ const RecommendedBooks = () => {
   const isLoading = useSelector(selectIsLoading);
   const perPage = useSelector(selectPerPage);
   const filters = useSelector(selectFilters);
+  const isRefreshing = useSelector(selectIsRefreshing);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedBook, setSelectedBook] = useState(null);
@@ -64,8 +66,9 @@ const RecommendedBooks = () => {
   }, [dispatch, perPage]);
 
   useEffect(() => {
+    if (isRefreshing) return;
     dispatch(fetchRecommendedBooks({ page: currentPage, perPage, filters }));
-  }, [dispatch, currentPage, perPage, filters]);
+  }, [dispatch, currentPage, perPage, filters, isRefreshing]);
 
   const handlePageChange = (newPage) => {
     dispatch(setCurrentPage(newPage));

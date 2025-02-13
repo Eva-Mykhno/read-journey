@@ -17,7 +17,7 @@ const calculateSessionData = (
   }
 
   const readPages = finishPage - startPage;
-  const percentRead = ((finishPage / totalPages) * 100).toFixed(2);
+  const percentRead = ((readPages / totalPages) * 100).toFixed(2);
   const readingTime = new Date(finishReading) - new Date(startReading);
   const readingTimeInMinutes = Math.floor(readingTime / 60000);
   const readingTimeInHours = readingTime / (1000 * 60 * 60);
