@@ -7,7 +7,10 @@ import {
   startReadingBook,
   finishReadingBook,
 } from "../../redux/books/operations";
-import { selectActiveProgressByBookId } from "../../redux/books/selectors";
+import {
+  selectActiveProgressByBookId,
+  selectReadingBook,
+} from "../../redux/books/selectors";
 import s from "./AddReading.module.css";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -35,15 +38,35 @@ const AddReading = ({ bookId }) => {
   const activeProgress = useSelector((state) =>
     selectActiveProgressByBookId(state, bookId)
   );
+  const book = useSelector((state) => selectReadingBook(state, bookId));
 
+  const totalPages = book?.totalPages || 0;
   const active = Boolean(activeProgress);
-
   const [page, setPage] = useState(active ? activeProgress.finishPage : 0);
 
   const buttonText = active ? "To stop" : "To start";
   const titleText = active ? "Stop page" : "Start page";
 
   const handleSubmit = async (values, { setSubmitting, resetForm }) => {
+    if (values.page > totalPages) {
+      const pagesLeft = totalPages - (activeProgress?.finishPage || 0);
+      toast.error(
+        `Invalid page number. You have ${pagesLeft} pages left to read.`,
+        toastConfig
+      );
+      setSubmitting(false);
+      return;
+    }
+
+    if (active && values.page < activeProgress.startPage) {
+      toast.error(
+        `You started reading from page ${activeProgress.startPage}. Please enter a valid finishing page.`,
+        toastConfig
+      );
+      setSubmitting(false);
+      return;
+    }
+
     try {
       if (active) {
         await dispatch(
