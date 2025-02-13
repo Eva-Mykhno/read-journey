@@ -13,7 +13,13 @@ const Statistics = ({ bookId }) => {
   const calculateReadingProgress = (book) => {
     if (!book.progress || book.progress.length === 0) return 0;
 
-    const totalReadPages = book.progress.reduce(
+    const completedSessions = book.progress.filter(
+      (session) => session.finishPage !== undefined
+    );
+
+    if (completedSessions.length === 0) return 0;
+
+    const totalReadPages = completedSessions.reduce(
       (sum, session) => sum + (session.finishPage - session.startPage),
       0
     );
@@ -22,10 +28,13 @@ const Statistics = ({ bookId }) => {
   };
 
   const progress = calculateReadingProgress(book);
-  const totalReadPages = book.progress.reduce(
-    (sum, session) => sum + (session.finishPage - session.startPage),
-    0
-  );
+
+  const totalReadPages = book.progress
+    .filter((session) => session.finishPage !== undefined)
+    .reduce(
+      (sum, session) => sum + (session.finishPage - session.startPage),
+      0
+    );
 
   return (
     <div className={s.statistics}>
